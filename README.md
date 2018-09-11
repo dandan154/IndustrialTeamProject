@@ -1,2 +1,2 @@
 # IndustrialTeamProject
-Industrial Team Project for 4th year
+Industrial Team Project for 4th Year
