@@ -3,16 +3,52 @@
  * wrld.time.js - Time Series visualisation plugin
  */
 
-var WrldTime = (function(global) {
+L.Control.TimeSlider = L.Control.extend({
 
     /**
-     * Plugin code goes here.
+     * Control options
      */
+    options: {
+        position: 'bottom',
+        layers: null,
+        maxValue: -1,
+        minValue: 0
+    },
 
-})(this);
+    /**
+     * Initialization
+     */
+    initialize: function(options) {
+        L.Util.setOptions(this, options);
+        this._layer = this.options.layer;
+    },
 
-module.export = WrldTime;
+    /**
+     * Called when the position of the map is set or changes
+     */
+    setPosition: function(position) {
+        
+    },
+
+    /**
+     * Called when the control is added to the map
+     */
+    onAdd: function(map) {
+        this.options.map = map;
+
+        // Create the container
+        var sliderComponent = L.DomUtil.create('div', 'slider', this._container);
+        sliderComponent.innerHTML = `Testing`;
+
+        return sliderComponent;
+    },
+
+    /**
+     * Called when the control is removed from the map
+     */
+    onRemove: function(map) {
+
+    }
+})
 },{}]},{},[1])(1)
 });
-
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vZGVfbW9kdWxlcy9icm93c2VyLXBhY2svX3ByZWx1ZGUuanMiLCJzcmMvd3JsZC50aW1lLmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0FDQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJmaWxlIjoiZ2VuZXJhdGVkLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXNDb250ZW50IjpbIihmdW5jdGlvbigpe2Z1bmN0aW9uIHIoZSxuLHQpe2Z1bmN0aW9uIG8oaSxmKXtpZighbltpXSl7aWYoIWVbaV0pe3ZhciBjPVwiZnVuY3Rpb25cIj09dHlwZW9mIHJlcXVpcmUmJnJlcXVpcmU7aWYoIWYmJmMpcmV0dXJuIGMoaSwhMCk7aWYodSlyZXR1cm4gdShpLCEwKTt2YXIgYT1uZXcgRXJyb3IoXCJDYW5ub3QgZmluZCBtb2R1bGUgJ1wiK2krXCInXCIpO3Rocm93IGEuY29kZT1cIk1PRFVMRV9OT1RfRk9VTkRcIixhfXZhciBwPW5baV09e2V4cG9ydHM6e319O2VbaV1bMF0uY2FsbChwLmV4cG9ydHMsZnVuY3Rpb24ocil7dmFyIG49ZVtpXVsxXVtyXTtyZXR1cm4gbyhufHxyKX0scCxwLmV4cG9ydHMscixlLG4sdCl9cmV0dXJuIG5baV0uZXhwb3J0c31mb3IodmFyIHU9XCJmdW5jdGlvblwiPT10eXBlb2YgcmVxdWlyZSYmcmVxdWlyZSxpPTA7aTx0Lmxlbmd0aDtpKyspbyh0W2ldKTtyZXR1cm4gb31yZXR1cm4gcn0pKCkiLCIvKipcbiAqIHdybGQudGltZS5qcyAtIFRpbWUgU2VyaWVzIHZpc3VhbGlzYXRpb24gcGx1Z2luXG4gKi9cblxudmFyIFdybGRUaW1lID0gKGZ1bmN0aW9uKGdsb2JhbCkge1xuXG4gICAgLyoqXG4gICAgICogUGx1Z2luIGNvZGUgZ29lcyBoZXJlLlxuICAgICAqL1xuXG59KSh0aGlzKTtcblxubW9kdWxlLmV4cG9ydCA9IFdybGRUaW1lOyJdfQ==
