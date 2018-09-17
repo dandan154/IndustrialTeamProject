@@ -97,3 +97,8 @@ L.Control.TimeSlider = L.Control.extend({
 L.control.timeSlider = function(options) {
     return new L.Control.TimeSlider(options);
 }
+
+function topDownCamera()
+{
+    map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0);
+}
