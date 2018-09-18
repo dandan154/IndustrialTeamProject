@@ -2,6 +2,7 @@
     <head>
         <title>wrld.time.js Demo</title>        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <link rel="stylesheet" href="wrld.time.css" />
     </head>
     <body style="margin: 0">
@@ -26,19 +27,14 @@
             var layerGroup = L.layerGroup(pins);
 
             var time = L.control.timeSlider({ layer: layerGroup });
-
             map.addControl(time);
+            
+           // map.addControl(new L.Control.ViewButton());
         </script>
         <div class="leaflet-top leaflet-left">
-            <button onclick="topDownCamera()">Birds Eye Camera<button>
             <script>
-                var helloPopup = L.popup().setContent('Hello World!');
-
-                L.easyButton('fa-globe', function(btn, map){
-                helloPopup.setLatLng(map.getCenter()).openOn(map);
-                }).addTo(map);
+                testButton.addTo(map);
             </script>
         </div>
-        <button onclick="topDownCamera()">Birds Eye Camera<button>
     </body>
 </html>

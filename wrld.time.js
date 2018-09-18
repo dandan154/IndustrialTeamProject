@@ -1,6 +1,37 @@
 /**
  * wrld.time.js - Time Series visualisation plugin
  */
+L.Control.ViewButton = L.Control.extend({
+
+    options: {
+        position: 'topleft'
+    },
+
+    onAdd: function(map){
+        var container = L.DomUtil.create('div', 'btn-container', this._container);
+        container.style.width = '70px';
+        container.style.height = '30px';
+
+        L.DomEvent.addListener(container, 'click', function(){
+            //TODO allow for going between the birds eye view and the main view
+            map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0);
+        })
+
+        L.DomEvent.addListener(container, 'mouseover', function(){
+            //TODO prevent dragging on map when over element
+            //map.dragging = false;
+        });
+
+        return container;
+    }
+})
+
+var testButton = L.easyButton('fa-compass', function()
+{
+    map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0)
+},
+'Move Camera to a Top Down Perspective'
+);
 
 L.Control.TimeSlider = L.Control.extend({
 
