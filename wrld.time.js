@@ -42,7 +42,7 @@ L.Control.TestButton = L.Control.extend({
      */
     onAdd: function(map) {
         // Create the container
-        var easyButton = L.Control.easyButton(
+        var easyButton = new L.Control.EasyButton(
             /**
              * Choose the icon
              */   
@@ -62,7 +62,7 @@ L.Control.TestButton = L.Control.extend({
          );
 
         return easyButton;
-    },
+    }
 });
 
 L.Control.TimeSlider = L.Control.extend({
