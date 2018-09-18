@@ -1,5 +1,10 @@
 
 
+.btn-container{
+    background-color: #262626;
+    padding: 10px; 
+    border-radius: 5px;
+}
 .time-container {
     background-color:rgba(255, 255, 255, 0.7); 
     padding: 10px; 
