@@ -1,6 +1,7 @@
 /**
  * wrld.time.js - Time Series visualisation plugin
  */
+
 L.Control.ViewButton = L.Control.extend({
 
     options: {
@@ -24,14 +25,47 @@ L.Control.ViewButton = L.Control.extend({
 
         return container;
     }
-})
+});
 
-var testButton = L.easyButton('fa-compass', function()
-{
-    map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0)
-},
-'Move Camera to a Top Down Perspective'
-);
+
+L.Control.TestButton = L.Control.extend({
+
+    /**
+     * Control options
+     */
+    options: {
+        position: 'topright',
+    },
+
+    /**
+     * Called when the control is added to the map
+     */
+    onAdd: function(map) {
+        this.options.map = map;
+
+        // Create the container
+        var easyButton = L.Control.EasyButton(
+            /**
+             * Choose the icon
+             */   
+           'fa-compass', 
+           
+           /**
+            * Function EasyButton Carries out
+            */
+           function(){
+               map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0)
+           },
+           
+           /**
+            * This field is what text appears upon mouse hover
+            */
+           'Move Camera to a Top Down Perspective'
+         );
+
+        return easyButton;
+    },
+});
 
 L.Control.TimeSlider = L.Control.extend({
 
