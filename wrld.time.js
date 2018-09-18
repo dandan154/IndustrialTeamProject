@@ -41,10 +41,8 @@ L.Control.TestButton = L.Control.extend({
      * Called when the control is added to the map
      */
     onAdd: function(map) {
-        this.options.map = map;
-
         // Create the container
-        var easyButton = L.Control.EasyButton(
+        var easyButton = L.Control.easyButton(
             /**
              * Choose the icon
              */   
