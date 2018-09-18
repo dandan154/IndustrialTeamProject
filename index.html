@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="wrld.time.css" />
     </head>
     <body style="margin: 0">
-        <div id="map" style="height: 100%; width: 100%"></div>
+        <div id="map" style="height: 80%; width: 80%"></div>
         <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
         <script src="wrld.time.js"></script>
         <script>
@@ -30,6 +30,7 @@
             map.addControl(time);
         </script>
         <div class="leaflet-top leaflet-left">
+            <button onclick="topDownCamera()">Birds Eye Camera<button>
             <script>
                 var helloPopup = L.popup().setContent('Hello World!');
 
@@ -38,5 +39,6 @@
                 }).addTo(map);
             </script>
         </div>
+        <button onclick="topDownCamera()">Birds Eye Camera<button>
     </body>
 </html>
