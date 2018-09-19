@@ -4,15 +4,39 @@
 
 L.Control.ViewButton = L.Control.extend({
 
+
+	
     options: {
-        position: 'topleft'
+        position: 'topleft',
+		width: '80px',			//in pixels
+		height: '50px',			//in pixels
+		animateCamera: false,	//determines if the camera instantly snaps to new orientation
+		tilt: 0, 				//Camera Tilt when active
+		heading: 0				//Camera Heading when active
     },
+	
+	initialize: function(display, options){
+		this.setDisplayText(display); 
+		L.setOptions(this, options);
+		
+		
+	},
+	
+	_displayText: "",
 	
 	_buttonState: false,
 
 	_prevCamHeading: 0, 
 	
 	_prevCamTilt: 0, 
+	
+	getDisplayText(){
+		return this._displayText; 
+	},
+	
+	setDisplayText(displayText){
+		this._displayText = displayText; 
+	},
 	
 	getPrevCamHeading: function(){
 		return this._prevCamHeading; 
@@ -35,12 +59,12 @@ L.Control.ViewButton = L.Control.extend({
 	setButtonState: function(newState){this._buttonState = newState;},
 	
     onAdd: function(map){
-		console.log(this._buttonState);
+		
         var container = L.DomUtil.create('input', 'btn-container', this._container);
-        container.style.width = '80px';
-        container.style.height = '40px';
+        container.style.width = this.options.width;
+        container.style.height = this.options.height;
 		container.type = 'button';
-		container.value = "View";
+		container.value = this.getDisplayText();
 
         L.DomEvent.addListener(container, 'click', function(){
 	
@@ -49,10 +73,12 @@ L.Control.ViewButton = L.Control.extend({
 				this.setPrevCamHeading(map.getCameraHeadingDegrees());
 				this.setPrevCamTilt(map.getCameraTiltDegrees());
 				
+				console.log(this.options.animateCamera);
+				
 				map.setView(map.getCenter(), map.getZoom(), {
-					headingDegrees: 0, 
-					tiltDegrees: 0, 
-					animate: false
+					headingDegrees: this.options.heading, 
+					tiltDegrees: this.options.tilt, 
+					animate: this.options.animateCamera
 				}); 
 				
 				this.setButtonState(true); 
@@ -62,7 +88,7 @@ L.Control.ViewButton = L.Control.extend({
 				map.setView(map.getCenter(), map.getZoom(), {
 					headingDegrees: this.getPrevCamHeading(), 
 					tiltDegrees: this.getPrevCamTilt(),
-					animate: false
+					animate: this.options.animateCamera
 				}); 
 				
 				this.setButtonState(false);
