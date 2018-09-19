@@ -10,7 +10,7 @@
         <script src="wrld.time.js"></script>
         <script>
             var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
-                center: [ 56.462, -2.9707 ] 
+                center: [ 56.462, -2.9707 ]
             });
 
             var pins = [];
@@ -27,8 +27,9 @@
 
             var time = L.control.timeSlider({ layer: layerGroup });
             map.addControl(time);
-            
-            map.addControl(new L.Control.ViewButton());
+			
+			var btn = new L.Control.ViewButton();
+            map.addControl(btn);
         </script>
     </body>
 </html>
