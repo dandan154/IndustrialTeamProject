@@ -29,7 +29,8 @@
             var time = L.control.timeSlider({ layer: layerGroup });
             map.addControl(time);
             
-            map.addControl(new L.Control.ViewButton());
+            var btn = new L.Control.ViewButton();
+            map.addControl(btn);
             //map.addControl(new L.control.TestButton());
         </script>
     </body>

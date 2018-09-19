@@ -122,8 +122,12 @@ L.Control.TimeSlider = L.Control.extend({
 
 L.control.timeSlider = function(options) {
     return new L.Control.TimeSlider(options);
-}
+};
 
+
+/**
+ * EasyButton creator Test
+ */
 L.Control.TestButton = L.Control.extend({
 
     /**
@@ -137,23 +141,17 @@ L.Control.TestButton = L.Control.extend({
      * Called when the control is added to the map
      */
     onAdd: function(map) {
-        // Create the container
+        // Create the button method
         var easyButton = new L.Control.EasyButton(
-            /**
-             * Choose the icon
-             */   
+            //used to select the icon used on the button
            'fa-compass', 
            
-           /**
-            * Function EasyButton Carries out
-            */
+           //function called when button is clicked
            function(){
                map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0)
            },
            
-           /**
-            * This field is what text appears upon mouse hover
-            */
+           //Mouseover text
            'Move Camera to a Top Down Perspective'
          );
 
