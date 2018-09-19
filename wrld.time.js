@@ -28,43 +28,6 @@ L.Control.ViewButton = L.Control.extend({
 });
 
 
-L.Control.TestButton = L.Control.extend({
-
-    /**
-     * Control options
-     */
-    options: {
-        position: 'topright',
-    },
-
-    /**
-     * Called when the control is added to the map
-     */
-    onAdd: function(map) {
-        // Create the container
-        var easyButton = new L.Control.EasyButton(
-            /**
-             * Choose the icon
-             */   
-           'fa-compass', 
-           
-           /**
-            * Function EasyButton Carries out
-            */
-           function(){
-               map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0)
-           },
-           
-           /**
-            * This field is what text appears upon mouse hover
-            */
-           'Move Camera to a Top Down Perspective'
-         );
-
-        return easyButton;
-    }
-});
-
 L.Control.TimeSlider = L.Control.extend({
 
     /**
@@ -161,7 +124,39 @@ L.control.timeSlider = function(options) {
     return new L.Control.TimeSlider(options);
 }
 
-function topDownCamera()
-{
-    map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0);
-}
+L.Control.TestButton = L.Control.extend({
+
+    /**
+     * Control options
+     */
+    options: {
+        position: 'topright',
+    },
+
+    /**
+     * Called when the control is added to the map
+     */
+    onAdd: function(map) {
+        // Create the container
+        var easyButton = new L.Control.EasyButton(
+            /**
+             * Choose the icon
+             */   
+           'fa-compass', 
+           
+           /**
+            * Function EasyButton Carries out
+            */
+           function(){
+               map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0)
+           },
+           
+           /**
+            * This field is what text appears upon mouse hover
+            */
+           'Move Camera to a Top Down Perspective'
+         );
+
+        return easyButton;
+    }
+});
