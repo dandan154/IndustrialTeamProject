@@ -7,16 +7,68 @@ L.Control.ViewButton = L.Control.extend({
     options: {
         position: 'topleft'
     },
+	
+	_buttonState: false,
 
+	_prevCamHeading: 0, 
+	
+	_prevCamTilt: 0, 
+	
+	getPrevCamHeading: function(){
+		return this._prevCamHeading; 
+	},
+	
+	setPrevCamHeading: function(newHeading){
+		this._prevCamHeading = newHeading; 
+	},
+	
+	getPrevCamTilt: function(){
+		return this._prevCamTilt; 
+	},
+	
+	setPrevCamTilt: function(newTilt){
+		this._prevCamTilt = newTilt; 
+	},
+	
+	getButtonState: function(){return this._buttonState;},
+	
+	setButtonState: function(newState){this._buttonState = newState;},
+	
     onAdd: function(map){
-        var container = L.DomUtil.create('div', 'btn-container', this._container);
-        container.style.width = '70px';
-        container.style.height = '30px';
+		console.log(this._buttonState);
+        var container = L.DomUtil.create('input', 'btn-container', this._container);
+        container.style.width = '80px';
+        container.style.height = '40px';
+		container.type = 'button';
+		container.value = "View";
 
         L.DomEvent.addListener(container, 'click', function(){
-            //TODO allow for going between the birds eye view and the main view
-            map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0);
-        })
+	
+			if(this.getButtonState() == false){ 
+				
+				this.setPrevCamHeading(map.getCameraHeadingDegrees());
+				this.setPrevCamTilt(map.getCameraTiltDegrees());
+				
+				map.setView(map.getCenter(), map.getZoom(), {
+					headingDegrees: 0, 
+					tiltDegrees: 0, 
+					animate: false
+				}); 
+				
+				this.setButtonState(true); 
+						
+			}else{
+
+				map.setView(map.getCenter(), map.getZoom(), {
+					headingDegrees: this.getPrevCamHeading(), 
+					tiltDegrees: this.getPrevCamTilt(),
+					animate: false
+				}); 
+				
+				this.setButtonState(false);
+
+			}
+        }, this)
 
         L.DomEvent.addListener(container, 'mouseover', function(){
             //TODO prevent dragging on map when over element
