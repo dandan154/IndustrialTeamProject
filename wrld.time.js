@@ -4,6 +4,7 @@
 
 L.Control.ViewButton = L.Control.extend({
 
+<<<<<<< HEAD
 
 	
     options: {
@@ -95,6 +96,21 @@ L.Control.ViewButton = L.Control.extend({
 
 			}
         }, this)
+=======
+    options: {
+        position: 'topleft'
+    },
+
+    onAdd: function(map){
+        var container = L.DomUtil.create('div', 'btn-container', this._container);
+        container.style.width = '70px';
+        container.style.height = '30px';
+
+        L.DomEvent.addListener(container, 'click', function(){
+            //TODO allow for going between the birds eye view and the main view
+            map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0);
+        })
+>>>>>>> 4bc0df584c0df64c108b75614a25e46919c3f66f
 
         L.DomEvent.addListener(container, 'mouseover', function(){
             //TODO prevent dragging on map when over element
@@ -103,7 +119,11 @@ L.Control.ViewButton = L.Control.extend({
 
         return container;
     }
+<<<<<<< HEAD
 })
+=======
+});
+>>>>>>> 4bc0df584c0df64c108b75614a25e46919c3f66f
 
 
 L.Control.TimeSlider = L.Control.extend({
@@ -200,4 +220,39 @@ L.Control.TimeSlider = L.Control.extend({
 
 L.control.timeSlider = function(options) {
     return new L.Control.TimeSlider(options);
-}
+};
+
+
+/**
+ * EasyButton creator Test
+ */
+L.Control.TestButton = L.Control.extend({
+
+    /**
+     * Control options
+     */
+    options: {
+        position: 'topright',
+    },
+
+    /**
+     * Called when the control is added to the map
+     */
+    onAdd: function(map) {
+        // Create the button method
+        var easyButton = new L.Control.EasyButton(
+            //used to select the icon used on the button
+           'fa-compass', 
+           
+           //function called when button is clicked
+           function(){
+               map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0)
+           },
+           
+           //Mouseover text
+           'Move Camera to a Top Down Perspective'
+         );
+
+        return easyButton;
+    }
+});
