@@ -64,8 +64,14 @@
          );
             map.addControl(test);
             var playBtn = new L.Control.EasyButton(
-                'fa-play-circle'
+                'fa-play',
+                function(){
+                        //TIME SLIDER MANIP CODE.
+                },
+                //MOUSEOVER
+                'Text Test'
             );
+            map.addControl(playBtn)
             
             
         </script>
