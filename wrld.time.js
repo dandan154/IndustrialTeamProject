@@ -8,7 +8,7 @@ L.Control.ViewButton = L.Control.extend({
         position: 'topleft',
 		width: '80px',			//in pixels
 		height: '50px',			//in pixels
-		animateCamera: false,	//determines if the camera instantly snaps to new orientation
+		animateCamera: true,	//determines if the camera instantly snaps to new orientation
 		tilt: 0, 				//Camera Tilt when active
 		heading: 0				//Camera Heading when active
     },
