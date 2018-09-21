@@ -35,7 +35,7 @@
 
             var time = L.control.timeSlider({ layer: layerGroup });
             
-            
+            //Variables for button
             var prevHeading = 0;
             var prevTilt = 0;
             var newHeading = 0;
@@ -46,13 +46,13 @@
                 L.easyButton(
                     '<i class="fas fa-paint-brush"></i>',
                     function(){
-                        
+                        //TODO edit heatmaps colours
                     }
                 ),
                 L.easyButton(
                     '<i class="fas fa-glasses"></i>',
                     function(){
-                        
+                        //TODO edit heatmaps opacity
                     }
                 )
             ];
@@ -61,23 +61,31 @@
                 L.easyButton(
                     '<i class="fas fa-plus"></i>',
                     function(){
-                        
+                        //TODO make a zoom in function
                     }
                 ),
                 L.easyButton(
                     '<i class="fas fa-minus"></i>',
                     function(){
-                        
+                        //TODO make a zoom out function
                     }
                 )
             ];
-            L.easyBar(zoom).addTo(map);
+            L.easyBar(zoom).addTo(map); //TODO sort out positioning of this element
+            
+            /**
+             * This is the on/off switch for the heatmap
+             */
             var toggle = L.easyButton({
                 position: 'topleft',
                 states: [{
                   stateName: 'turn-on',
                   icon: '<i class="fas fa-toggle-off"></i>',
                   title: 'Turn On Heatmap',
+                  
+                  /**
+                   * This controls what happens when the button is clicked
+                   */
                   onClick: function(control) {
                     prevHeading = map.getCameraHeadingDegrees();
                     prevTilt = map.getCameraTiltDegrees();
@@ -89,11 +97,17 @@
                     });
                     map.addControl(time);
                     L.easyBar(menu).addTo(map);
-                    control.state('turn-off');
+                    
+                    control.state('turn-off'); //This is the stateName this button changes to
                   }
                 }, {
                   icon: '<i class="fas fa-toggle-on"></i>',
                   stateName: 'turn-off',
+                  title: 'Turn Off Heatmap',
+                  
+                  /**
+                   * This controls what happens when the button is clicked
+                   */
                   onClick: function(control) {
                     map.setView(map.getCenter(), map.getZoom(), {
                         headingDegrees: prevHeading, 
@@ -102,9 +116,9 @@
                     });
                     L.easyBar(menu).remove(map);
                     time.remove(map);
-                    control.state('turn-on');
-                  },
-                  title: 'Turn Off Heatmap'
+                    
+                    control.state('turn-on'); //This is the stateName this button changes to
+                  }
                 }]
             });
             toggle.addTo(map);
