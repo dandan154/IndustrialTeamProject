@@ -67,7 +67,13 @@
                 )
             ];
             
-            var zoom = [
+            var zoombuttons = L.control.zoom({
+             position:'topright'
+            }).addTo(map);
+
+
+
+            /** var zoom = [
                 L.easyButton(
                     '<i class="fas fa-plus"></i>',
                     function(){
@@ -84,10 +90,11 @@
                 )
             ];
             L.easyBar(zoom).addTo(map); //TODO sort out positioning of this element
-            
+            */
             /**
              * This is the on/off switch for the heatmap
              */
+             
             var toggle = L.easyButton({
                 position: 'topleft',
                 states: [{
