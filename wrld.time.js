@@ -167,12 +167,12 @@ L.Control.TimeSlider = L.Control.extend({
      */
     onRemove: function(map) {
         // Delete all layers associated with the slider
-        this.options.markers.forEach(marker => {
-            map.removeLayer(marker);
-        });
+        //this.options.markers.forEach(marker => {
+        //    map.removeLayer(marker);
+        //});
 
         // Remove event listeners
-        document.removeEventListener()
+        //document.removeEventListener()
     },
 
     /**
