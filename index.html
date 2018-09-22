@@ -43,6 +43,7 @@
             var lineLen = pins.length;
             var pinLen = lines.length;
 
+            /*
             for(var i = 0; i < lineLen; i++){
               lines[i].addTo(map);
             }
@@ -50,6 +51,7 @@
             for(var i=0; i<pinLen; i++){
               pins[i].addTo(map);
             }
+            */
 
             var heat = L.heatLayer(heatmapPoints, {radius: 25});
             var layerGroup = L.layerGroup(heat);
@@ -68,14 +70,28 @@
                     function(){
                         //TODO edit heatmaps colours
                     },
-                    'Change the colours of the heatmap'
+                    'Change the colours of the heatmap',
+                    'colour-change-button'
                 ),
                 L.easyButton(
                     '<i class="fas fa-glasses"></i>',
                     function(){
                         //TODO edit heatmaps opacity
                     },
-                    'Change the Opacity of the heatmap'
+                    'Change the Opacity of the heatmap',
+                    'opacity-button'
+                ),
+                L.easyButton(
+                    '<i class="fas fa-redo-alt"></i>',
+                    function(){
+                        map.setView(map.getCenter(), map.getZoom(), {
+                        headingDegrees: newHeading,
+                        tiltDegrees: newTilt,
+                        animate: animateCamera
+                    });
+                    },
+                    'Reset the view',
+                    'reset-view'
                 )
             ];
 
@@ -84,10 +100,11 @@
             }).addTo(map);
 
             var toggle = L.easyButton({
+                id:'toggle',
                 position: 'topleft',
                 states: [{
                   stateName: 'turn-on',
-                  icon: '<i class="fas fa-toggle-off"></i>',
+                  icon: 'Turn Heatmap On <i class="fas fa-toggle-off"></i>',
                   title: 'Turn On Heatmap',
 
                   /**
@@ -102,13 +119,16 @@
                         tiltDegrees: newTilt,
                         animate: animateCamera
                     });
+                    setTimeout(function() {
+                        map.setCameraHeadingDegrees(newHeading).setCameraTiltDegrees(newTilt);
+                      }, 1000);
                     map.addControl(time);
                     L.easyBar(menu).addTo(map);
                     heat.addTo(map);
                     control.state('turn-off'); //This is the stateName this button changes to
                   }
                 }, {
-                  icon: '<i class="fas fa-toggle-on"></i>',
+                  icon: 'Turn Heatmap Off <i class="fas fa-toggle-on"></i>',
                   stateName: 'turn-off',
                   title: 'Turn Off Heatmap',
 
@@ -121,6 +141,9 @@
                         tiltDegrees: prevTilt,
                         animate: animateCamera
                     });
+                    setTimeout(function() {
+                        map.setCameraHeadingDegrees(prevHeading).setCameraTiltDegrees(prevTilt);
+                      }, 1000);
                     L.easyBar(menu).remove(map);
                     time.remove(map);
                     heat.remove(map);
