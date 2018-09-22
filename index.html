@@ -42,16 +42,7 @@
             }
             var lineLen = pins.length;
             var pinLen = lines.length;
-
-            /*
-            for(var i = 0; i < lineLen; i++){
-              lines[i].addTo(map);
-            }
-
-            for(var i=0; i<pinLen; i++){
-              pins[i].addTo(map);
-            }
-            */
+            
 
             var heat = L.heatLayer(heatmapPoints, {radius: 25});
             var layerGroup = L.layerGroup(heat);
@@ -125,6 +116,13 @@
                     map.addControl(time);
                     L.easyBar(menu).addTo(map);
                     heat.addTo(map);
+                    for(var i = 0; i < lineLen; i++){
+                        lines[i].addTo(map);
+                    }
+
+                    for(var i=0; i<pinLen; i++){
+                        pins[i].addTo(map);
+                    }
                     control.state('turn-off'); //This is the stateName this button changes to
                   }
                 }, {
@@ -147,6 +145,13 @@
                     L.easyBar(menu).remove(map);
                     time.remove(map);
                     heat.remove(map);
+                    for(var i = 0; i < lineLen; i++){
+                        lines[i].remove(map);
+                    }
+
+                    for(var i=0; i<pinLen; i++){
+                        pins[i].remove(map);
+                    }
                     control.state('turn-on'); //This is the stateName this button changes to
                   }
                 }]
