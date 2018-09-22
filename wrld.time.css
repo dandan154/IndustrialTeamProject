@@ -46,3 +46,21 @@
     border-radius: 5px;
     color: white;
 }
+
+#colour-change-button{
+    padding: 8px;
+}
+
+#opacity-button{
+    padding: 8px;
+}
+
+#reset-view{
+    padding: 8px;
+}
+
+#toggle{
+    width:150px;
+    height:40px;
+    padding: 5px;
+}
