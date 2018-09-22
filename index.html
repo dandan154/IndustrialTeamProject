@@ -55,7 +55,12 @@
             var newTilt = 0;
             var animateCamera = true;
 
+            /**
+             * This array stores the buttons for the heatmap menu
+             */
             var menu = [
+                
+                //This is the colour button
                 L.easyButton(
                     '<i class="fas fa-paint-brush"></i>',
                     function(){
@@ -64,6 +69,8 @@
                     'Change the colours of the heatmap',
                     'colour-change-button'
                 ),
+                
+                //This is the Opacity button
                 L.easyButton(
                     '<i class="fas fa-glasses"></i>',
                     function(){
@@ -72,6 +79,8 @@
                     'Change the Opacity of the heatmap',
                     'opacity-button'
                 ),
+        
+                //This is the manual birds eye view button
                 L.easyButton(
                     '<i class="fas fa-redo-alt"></i>',
                     function(){
@@ -85,11 +94,17 @@
                     'reset-view'
                 )
             ];
-
+            
+            /**
+             * This variable controls the physical zoom buttons on the map
+             */
             var zoombuttons = L.control.zoom({
              position:'topright'
             }).addTo(map);
 
+            /**
+             * This is the on/off switch for the heatmap
+             */
             var toggle = L.easyButton({
                 id:'toggle',
                 position: 'topleft',
@@ -102,20 +117,29 @@
                    * This controls what happens when the button is clicked
                    */
                   onClick: function(control) {
+                    
+                    //Sets the previous heading and tilt for the camera when heatmap is toggled off
                     prevHeading = map.getCameraHeadingDegrees();
                     prevTilt = map.getCameraTiltDegrees();
                     console.log(animateCamera);
+                    
+                    //This changes the view
                     map.setView(map.getCenter(), map.getZoom(), {
                         headingDegrees: newHeading,
                         tiltDegrees: newTilt,
                         animate: animateCamera
                     });
-                    setTimeout(function() {
-                        map.setCameraHeadingDegrees(newHeading).setCameraTiltDegrees(newTilt);
-                      }, 1000);
+                    
+                    //Adds the slider to the map
                     map.addControl(time);
-                    L.easyBar(menu).addTo(map);
+                    
+                    //Adds the heatmap menu
+                    L.easyBar(menu).addTo(map); 
+                    
+                    //Adds the heatmap layer
                     heat.addTo(map);
+                    
+                    //Adds the lines and pins
                     for(var i = 0; i < lineLen; i++){
                         lines[i].addTo(map);
                     }
@@ -123,6 +147,8 @@
                     for(var i=0; i<pinLen; i++){
                         pins[i].addTo(map);
                     }
+                    
+                    //Changes the control state
                     control.state('turn-off'); //This is the stateName this button changes to
                   }
                 }, {
@@ -134,17 +160,24 @@
                    * This controls what happens when the button is clicked
                    */
                   onClick: function(control) {
+                      
+                    //Sets the view the button toggles
                     map.setView(map.getCenter(), map.getZoom(), {
                         headingDegrees: prevHeading,
                         tiltDegrees: prevTilt,
                         animate: animateCamera
                     });
-                    setTimeout(function() {
-                        map.setCameraHeadingDegrees(prevHeading).setCameraTiltDegrees(prevTilt);
-                      }, 1000);
+                    
+                    //Removes the heatmap menu
                     L.easyBar(menu).remove(map);
+                    
+                    //Removes the slider
                     time.remove(map);
+                    
+                    //Removes the heatmap
                     heat.remove(map);
+                    
+                    //Removes the lines and icons
                     for(var i = 0; i < lineLen; i++){
                         lines[i].remove(map);
                     }
@@ -152,35 +185,15 @@
                     for(var i=0; i<pinLen; i++){
                         pins[i].remove(map);
                     }
+                    
+                    //Changes the button state
                     control.state('turn-on'); //This is the stateName this button changes to
                   }
                 }]
             });
-            toggle.addTo(map);
-
-
-            /** var zoom = [
-                L.easyButton(
-                    '<i class="fas fa-plus"></i>',
-                    function(){
-                        //TODO make a zoom in function
-                    },
-                    'Zoom In'
-                ),
-                L.easyButton(
-                    '<i class="fas fa-minus"></i>',
-                    function(){
-                        //TODO make a zoom out function
-                    },
-                    'Zoom Out'
-                )
-            ];
-            L.easyBar(zoom).addTo(map); //TODO sort out positioning of this element
-            */
-
-            /**
-             * This is the on/off switch for the heatmap
-             */
+            
+            //Adds the toggle button to the map
+            toggle.addTo(map);           
         </script>
         <br>
     </body>
