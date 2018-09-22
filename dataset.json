@@ -1,0 +1,548 @@
+// 20180922123047
+// https://raw.githubusercontent.com/maccamcmacca/latlonggen/master/formatted.json
+
+var dataset = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            56.476373718326855,
+            -3.0222874204686794
+          ],
+          [
+            56.46840475301886,
+            -2.956357600297241
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 0,
+      "properties": {
+        "date": "1914-10-14"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.46840475301886,
+          -2.956357600297241
+        ]
+      },
+      "type": "Feature",
+      "id": 1,
+      "properties": {
+        "date": "1914-10-14",
+        "town": "Dundee",
+        "intensity": 22
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            56.47278772209495,
+            -3.012365929995683
+          ],
+          [
+            56.473759694750456,
+            -2.9288353023886167
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 2,
+      "properties": {
+        "date": "1914-07-16"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.473759694750456,
+          -2.9288353023886167
+        ]
+      },
+      "type": "Feature",
+      "id": 3,
+      "properties": {
+        "date": "1914-07-16",
+        "town": "Dundee",
+        "intensity": 80
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            56.47187482157245,
+            -3.0310045151294753
+          ],
+          [
+            56.4739491697449,
+            -2.994913356907057
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 4,
+      "properties": {
+        "date": "1918-08-12"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.4739491697449,
+          -2.994913356907057
+        ]
+      },
+      "type": "Feature",
+      "id": 5,
+      "properties": {
+        "date": "1918-08-12",
+        "town": "Dundee",
+        "intensity": 73
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            56.478001279946284,
+            -2.989654130898391
+          ],
+          [
+            56.47266966604508,
+            -2.976709311583434
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 6,
+      "properties": {
+        "date": "1916-04-27"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.47266966604508,
+          -2.976709311583434
+        ]
+      },
+      "type": "Feature",
+      "id": 7,
+      "properties": {
+        "date": "1916-04-27",
+        "town": "Dundee",
+        "intensity": 73
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            56.46918396839011,
+            -3.0168841885553643
+          ],
+          [
+            56.472896408774446,
+            -3.0294337379162153
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 8,
+      "properties": {
+        "date": "1918-11-10"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.472896408774446,
+          -3.0294337379162153
+        ]
+      },
+      "type": "Feature",
+      "id": 9,
+      "properties": {
+        "date": "1918-11-10",
+        "town": "Dundee",
+        "intensity": 59
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.870098180606405,
+            -4.171141658763918
+          ],
+          [
+            55.901614300252355,
+            -4.253707407952475
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 0,
+      "properties": {
+        "date": "1918-08-15"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.901614300252355,
+          -4.253707407952475
+        ]
+      },
+      "type": "Feature",
+      "id": 1,
+      "properties": {
+        "date": "1918-08-15",
+        "town": "Glasgow",
+        "intensity": 38
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.81072276422078,
+            -4.437329452851734
+          ],
+          [
+            55.90920029682697,
+            -4.217793340893615
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 2,
+      "properties": {
+        "date": "1918-03-02"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.90920029682697,
+          -4.217793340893615
+        ]
+      },
+      "type": "Feature",
+      "id": 3,
+      "properties": {
+        "date": "1918-03-02",
+        "town": "Glasgow",
+        "intensity": 82
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.8120393957708,
+            -4.323326476359052
+          ],
+          [
+            55.885619185251294,
+            -4.4424502028298996
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 4,
+      "properties": {
+        "date": "1918-03-13"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.885619185251294,
+          -4.4424502028298996
+        ]
+      },
+      "type": "Feature",
+      "id": 5,
+      "properties": {
+        "date": "1918-03-13",
+        "town": "Glasgow",
+        "intensity": 64
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.84910646635034,
+            -4.2160833906782855
+          ],
+          [
+            55.78478436302793,
+            -4.1167011971126115
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 6,
+      "properties": {
+        "date": "1918-09-20"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.78478436302793,
+          -4.1167011971126115
+        ]
+      },
+      "type": "Feature",
+      "id": 7,
+      "properties": {
+        "date": "1918-09-20",
+        "town": "Glasgow",
+        "intensity": 85
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.87941155470446,
+            -4.2213233205640455
+          ],
+          [
+            55.8657538477593,
+            -4.3084417824393855
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 8,
+      "properties": {
+        "date": "1914-02-22"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.8657538477593,
+          -4.3084417824393855
+        ]
+      },
+      "type": "Feature",
+      "id": 9,
+      "properties": {
+        "date": "1914-02-22",
+        "town": "Glasgow",
+        "intensity": 8
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.92601801647358,
+            -3.115772056469848
+          ],
+          [
+            55.910756961505,
+            -3.1322326563865537
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 0,
+      "properties": {
+        "date": "1917-04-07"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.910756961505,
+          -3.1322326563865537
+        ]
+      },
+      "type": "Feature",
+      "id": 1,
+      "properties": {
+        "date": "1917-04-07",
+        "town": "Edinburgh",
+        "intensity": 37
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.949303618416934,
+            -3.2242542899553137
+          ],
+          [
+            55.92873247165117,
+            -3.163344079103877
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 2,
+      "properties": {
+        "date": "1915-12-25"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.92873247165117,
+          -3.163344079103877
+        ]
+      },
+      "type": "Feature",
+      "id": 3,
+      "properties": {
+        "date": "1915-12-25",
+        "town": "Edinburgh",
+        "intensity": 88
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.96177368769544,
+            -3.079938823769105
+          ],
+          [
+            55.96981603820901,
+            -3.247780975715546
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 4,
+      "properties": {
+        "date": "1918-05-10"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.96981603820901,
+          -3.247780975715546
+        ]
+      },
+      "type": "Feature",
+      "id": 5,
+      "properties": {
+        "date": "1918-05-10",
+        "town": "Edinburgh",
+        "intensity": 14
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.91219957647423,
+            -3.2865534347998224
+          ],
+          [
+            55.93652938321675,
+            -3.111756882194125
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 6,
+      "properties": {
+        "date": "1914-05-05"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.93652938321675,
+          -3.111756882194125
+        ]
+      },
+      "type": "Feature",
+      "id": 7,
+      "properties": {
+        "date": "1914-05-05",
+        "town": "Edinburgh",
+        "intensity": 99
+      }
+    },
+    {
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            55.96503143616296,
+            -3.1689602939661747
+          ],
+          [
+            55.92838519867789,
+            -3.0777231573693644
+          ]
+        ]
+      },
+      "type": "Feature",
+      "id": 8,
+      "properties": {
+        "date": "1917-12-20"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.92838519867789,
+          -3.0777231573693644
+        ]
+      },
+      "type": "Feature",
+      "id": 9,
+      "properties": {
+        "date": "1917-12-20",
+        "town": "Edinburgh",
+        "intensity": 71
+      }
+    }
+  ]
+}
