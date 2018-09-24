@@ -49,7 +49,8 @@ These stylesheets are used purely for our examples, buttons are in fact not even
 #### Including Your Dataset
 The library makes use of the standardised GeoJSON format. The simplest way to include your dataset is to do so locally, assigning the data to a javascript array in a separate file and adding it the main root repository: 
 
-##### index.html
+##### your-page.html
+Include this on your page:
 
      <script src="dataset.json"></script>
 
