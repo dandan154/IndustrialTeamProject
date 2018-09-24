@@ -2,8 +2,9 @@
 # wrld.time.js
 wrld.time.js allows for the use of heatmaps on a WRLD3D map.
 ## Setup/Installation
-#### Style Sheet Dependencies
-wrld.time.js examples require the following CDN style sheets. Include these in the head of your file.
+#### Dependencies
+wrld.time.js includes several additional dependencies. These are included to help get you up and running as quickly as possible using our built in examples. Append these to the top of your file.
+
 ##### Standard leaflet CSS
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
 ##### wrld.time.js Custom Style sheet
@@ -13,12 +14,12 @@ wrld.time.js examples require the following CDN style sheets. Include these in t
 
   
 ##### easyButton and Font Awesome
-These stylesheets are used purely for our examples, buttons are in fact not even required!
+These stylesheets are used purely for our examples, buttons are in fact not even required! The associated javascript is already included.
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.3.0/easy-button.css" rel="stylesheet"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-#### Other Dependencies
 ##### Wrld.js
+This is the main dependency. To make use of the dev kit and its features go to https://wrld3d.com/wrld.js/latest/docs/examples/
     <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
 ### Easy
 This Guide will get anyone up and running. Our repository includes a website to show you how our plugin works and some of its features.
