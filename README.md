@@ -20,6 +20,7 @@ These stylesheets are used purely for our examples, buttons are in fact not even
     <link href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.3.0/easy-button.css" rel="stylesheet"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 ##### Wrld.js
 This is the main dependency. To make use of the dev kit and its features go to https://wrld3d.com/wrld.js/latest/docs/examples/
+
     <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
 ### Easy
 This Guide will get anyone up and running. Our repository includes a website to show you how our plugin works and some of its features.
