@@ -1,3 +1,4 @@
+
 # wrld.time.js
 wrld.time.js allows for the use of heatmaps on a WRLD3D map.
 ## Setup/Installation
@@ -9,6 +10,7 @@ wrld.time.js examples require the following CDN style sheets. Include these in t
   this style sheet also has custom easyButton templates
   
     <link rel="stylesheet" href="wrld.time.css" />
+
   
 ##### easyButton and Font Awesome
 These stylesheets are used purely for our examples, buttons are in fact not even required!
@@ -22,7 +24,7 @@ These stylesheets are used purely for our examples, buttons are in fact not even
 This Guide will get anyone up and running. Our repository includes a website to show you how our plugin works and some of its features.
 #### Setup
 Clone this repository and make this the root of your project.
-navigate to the following in your web browser;
+navigate to the following in your web browser:
 
     http://path/to/root/website/
 
@@ -31,7 +33,35 @@ This setup guide is tailored to more experienced users.
 #### Setup
 Clone this repository and unzip into your chosen directory.
 #### Including Your Dataset
-The plugin uses a GeoJSON format
+The library makes use of the standardised GeoJSON format. The simplest way to include your dataset is to do so locally, assigning the data to a javascript array in a separate file and adding it the main root repository: 
+
+##### index.html
+
+     <script src="dataset.json"></script>
+
+##### dataset.json
+
+        var dataset = {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              56.46840475301886,
+              -2.956357600297241
+            ]
+          },
+          "type": "Feature",
+          "id": 1,
+          "properties": {
+            "date": "2017-12-31",
+            "town": "Dundee"
+          }
+        }
+      ]
+    }
+The above GeoJSON example generates a single coordinate on the map. It has a unique date property within it. This is important as it allows the wrld.time library to effectively time sequence the data. Further properties may be included where required.   
 #### Included Tools
 
 ## Examples
