@@ -93,6 +93,8 @@
                     'reset-view'
                 )
             ];
+
+            var menuTest = L.easyBar(menu) ; 
             
             /**
              * This variable controls the physical zoom buttons on the map
@@ -133,7 +135,7 @@
                     map.addControl(time);
                     
                     //Adds the heatmap menu
-                    L.easyBar(menu).addTo(map); 
+                    menuTest.addTo(map);
                     
                     //Adds the heatmap layer
                     heat.addTo(map);
@@ -168,7 +170,7 @@
                     });
                     
                     //Removes the heatmap menu
-                    L.easyBar(menu).remove(map);
+                    menuTest.remove(map);
                     
                     //Removes the slider
                     time.remove(map);
