@@ -81,10 +81,10 @@ The above GeoJSON example generates a single coordinate on the map. It has a uni
 #### Included Tools
 
 # Credits
-WRLD3D - https://wrld3d.com/wrld.js/latest/docs/api/
-Leaflet.heat - https://github.com/Leaflet/Leaflet.heat
-simpleheat - https://github.com/mourner/simpleheat
-Leaflet.easyButton - https://github.com/CliffCloud/Leaflet.EasyButton
+ - WRLD3D - https://wrld3d.com/wrld.js/latest/docs/api/
+ - Leaflet.heat - https://github.com/Leaflet/Leaflet.heat
+ - simpleheat - https://github.com/mourner/simpleheat
+ - Leaflet.easyButton - https://github.com/CliffCloud/Leaflet.EasyButton
 
 
 
