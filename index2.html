@@ -6,60 +6,51 @@
     </head>
     <body style="margin: 0">
         <div id="map" style="height: 100%; width: 100%"></div>
-        <script src="wrld.js"></script>
+        <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
         <script src="heatmap.js"></script>
         <script src="wrld.time.js"></script>
         <script src="data.js"></script>
         <script>
             var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
-                center: [ 56.462, -2.9707 ] 
+                center: [ 56.462, -2.9707 ],
+                indoorsEnabled: true
             });
 
             var features = [];
 
-            for (var i = 0; i < 100; i++) {
-                var month = Math.floor(Math.random()*8)+1;
-                var day = Math.floor(Math.random()*8)+1;
-                features.push({
-                    "geometry": {
-                        "type": "Point", 
-                        "coordinates": [
-                            -2.9707+Math.random()*.1-0.05, 
-                            56.462+Math.random()*.1-0.05
-                        ]
-                    },
-                    "type": "Feature", 
-                    "id": i, 
-                    "properties": {
-                        "date":  "2018-0" + month + "-0" + day, 
-                        "town": "Dundee", 
-                        "intensity": 31
-                    }
-                });
+            function addRandomPins(features, centerCoords, radius, number, indoorId) {
+                for (var i = 0; i < number; i++) {
+                    var month = Math.floor(Math.random()*8)+1;
+                    var day = Math.floor(Math.random()*8)+1;
+                    features.push({
+                        "geometry": {
+                            "type": "Point", 
+                            "coordinates": [
+                                centerCoords[0]+Math.random()*radius-(radius/2), 
+                                centerCoords[1]+Math.random()*radius-(radius/2),
+                            ]
+                        },
+                        "type": "Feature", 
+                        "id": i, 
+                        "properties": {
+                            "date":  "2018-0" + month + "-0" + day, 
+                            "town": "Dundee", 
+                            "intensity": 31,
+                            "indoorMapId": indoorId,
+                            "indoorMapFloorId": (indoorId) ? 0 : undefined
+                        }
+                    });
+                }
             }
 
-            for (var i = 0; i < 10; i++) {
-                var month = Math.floor(Math.random()*8)+1;
-                var day = Math.floor(Math.random()*8)+1;
-
-                features.push({
-                    "geometry": {
-                        "type": "Polygon", 
-                        "coordinates": [
-                            -2.9707+Math.random()*.1-0.05, 
-                            56.462+Math.random()*.1-0.05
-                        ]
-                    },
-                    "type": "Feature", 
-                    "id": i, 
-                    "properties": {
-                        "date":  "2018-0" + month + "-0" + day, 
-                        "town": "Dundee", 
-                        "intensity": 31
-                    }
-                });
-            }
-
+            var dundeeCenter = [ -2.9707, 56.462 ];
+            var dundeeRadius = 0.05;
+            var overgateCenter = [ -2.978318964344612, 56.46007119297972 ];
+            var overgateRadius = .0004;
+            var overgateMapId = 'westport_house';
+            addRandomPins(features, dundeeCenter, dundeeRadius, 100);
+            addRandomPins(features, overgateCenter, overgateRadius, 100, overgateMapId);
+            
             var data2 = {
                 "type": "FeatureCollection",
                 "features": features
@@ -68,7 +59,7 @@
             /**
              * Creates the wrldTime object
              */
-            wrldTime(map, data2, {
+            var wrldTimeObj = wrldTime(map, data2, {
                 heatmap: false,
             });
         </script>

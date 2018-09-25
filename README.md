@@ -1,4 +1,3 @@
-
 # wrld.time.js
 wrld.time.js allows for the use of heatmaps on a WRLD3D map.
 ## Setup/Installation
@@ -86,4 +85,6 @@ The above GeoJSON example generates a single coordinate on the map. It has a uni
  - Leaflet.heat - https://github.com/Leaflet/Leaflet.heat
  - simpleheat - https://github.com/mourner/simpleheat
  - Leaflet.easyButton - https://github.com/CliffCloud/Leaflet.EasyButton
-
+=======
+# IndustrialTeamProject
+Industrial Team Project for 4th Year
