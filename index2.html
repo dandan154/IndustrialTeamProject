@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>wrld.time.js Demo</title>        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
+        <link rel="stylesheet" href="wrld.time.css" />
+    </head>
+    <body style="margin: 0">
+        <div id="map" style="height: 100%; width: 100%"></div>
+        <script src="wrld.js"></script>
+        <script src="heatmap.js"></script>
+        <script src="wrld.time.js"></script>
+        <script src="data.js"></script>
+        <script>
+            var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
+                center: [ 56.462, -2.9707 ] 
+            });
+
+            var features = [];
+
+            for (var i = 0; i < 100; i++) {
+                var month = Math.floor(Math.random()*8)+1;
+                var day = Math.floor(Math.random()*8)+1;
+                features.push({
+                    "geometry": {
+                        "type": "Point", 
+                        "coordinates": [
+                            -2.9707+Math.random()*.1-0.05, 
+                            56.462+Math.random()*.1-0.05
+                        ]
+                    },
+                    "type": "Feature", 
+                    "id": i, 
+                    "properties": {
+                        "date":  "2018-0" + month + "-0" + day, 
+                        "town": "Dundee", 
+                        "intensity": 31
+                    }
+                });
+            }
+
+            for (var i = 0; i < 10; i++) {
+                var month = Math.floor(Math.random()*8)+1;
+                var day = Math.floor(Math.random()*8)+1;
+
+                features.push({
+                    "geometry": {
+                        "type": "Polygon", 
+                        "coordinates": [
+                            -2.9707+Math.random()*.1-0.05, 
+                            56.462+Math.random()*.1-0.05
+                        ]
+                    },
+                    "type": "Feature", 
+                    "id": i, 
+                    "properties": {
+                        "date":  "2018-0" + month + "-0" + day, 
+                        "town": "Dundee", 
+                        "intensity": 31
+                    }
+                });
+            }
+
+            var data2 = {
+                "type": "FeatureCollection",
+                "features": features
+            }
+
+            /**
+             * Creates the wrldTime object
+             */
+            wrldTime(map, data2, {
+                heatmap: false,
+            });
+        </script>
+    </body>
+</html>
