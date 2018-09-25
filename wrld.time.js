@@ -127,7 +127,7 @@ function wrldTime(map, data, options) {
 //TODO: CSS - FIX BUTTON STYLING - font awesome
 class WrldTimeUI{
 
-    constructor(map, options={}){
+    constructor(map){
         //Variables for button
         this._prevHeading = 0;
         this._prevTilt = 0;
