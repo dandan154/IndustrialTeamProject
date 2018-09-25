@@ -111,7 +111,9 @@ class WrldTime {
      */
     setupTimeLayer() {
         if (this._layer != undefined) {
-            this._layer.remove();
+            map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
         }
 
         this._layer = L.geoJSON(this.data, {
