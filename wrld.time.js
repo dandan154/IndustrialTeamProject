@@ -27,7 +27,9 @@ class WrldTime {
             heatmap: options.heatmap || false,
             showIndoorPointsExternally: false,
             heatmapIntensity: options.heatmapIntensity || 50,
-            indoorHeatmapIntensity: options.indoorHeatmapIntensity || 1
+            indoorHeatmapIntensity: options.indoorHeatmapIntensity || 1,
+            verticalPosition: options.verticalPosition || 'top',
+            horizontalPosition: options.horizontalPosition || 'left'
         }
 
         this._map = map;
@@ -99,6 +101,7 @@ class WrldTime {
      * Display the slider
      */
     displaySlider() {
+        this._container = document.createElement('div');
         this._sliderContainer = document.createElement('div');
         this._slider = document.createElement('input');
 
@@ -110,9 +113,23 @@ class WrldTime {
 
         this._sliderContainer.innerHTML = `Time: [Time stamp]<br>`;
         this._sliderContainer.append(this._slider);
-        this._sliderContainer.classList.add('time-container');
+        this._sliderContainer.classList.add('time-slider-container');
 
-        this._map._container.parentElement.parentElement.append(this._sliderContainer);
+        this._container.append(this._sliderContainer);
+        this._container.classList.add('time-container');
+        switch (this.options.verticalPosition) {
+            case 'top': this._container.style.alignItems = 'flex-start'; break;
+            case 'bottom': this._container.style.alignItems = 'flex-end'; break;
+        }
+        switch (this.options.horizontalPosition) {
+            case 'left': this._container.style.justifyContent = 'flex-start'; break;
+            case 'center': this._container.style.justifyContent = 'center'; break;
+            case 'right': this._container.style.justifyContent = 'flex-end'; break;
+        }
+
+        var wrldContainer = this._map._container.parentElement.parentElement;
+        wrldContainer.style.position = 'relative';
+        wrldContainer.append(this._container);
     }
 
     /**

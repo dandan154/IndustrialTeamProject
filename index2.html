@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="wrld.time.css" />
     </head>
     <body style="margin: 0">
-        <div id="map" style="height: 100%; width: 100%"></div>
+        <div id="map" style="height: 500px; width: 1200px; margin-left: 200px; margin-top: 180px;"></div>
         <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
         <script src="heatmap.js"></script>
         <script src="wrld.time.js"></script>
@@ -61,6 +61,29 @@
              */
             var wrldTimeObj = wrldTime(map, data2, {
                 heatmap: true,
+            });
+            var wrldTimeObj = wrldTime(map, data2, {
+                heatmap: true,
+                horizontalPosition: 'center'
+            });
+            var wrldTimeObj = wrldTime(map, data2, {
+                heatmap: true,
+                horizontalPosition: 'right'
+            });
+            var wrldTimeObj = wrldTime(map, data2, {
+                heatmap: true,
+                horizontalPosition: 'left',
+                verticalPosition: 'bottom'
+            });
+            var wrldTimeObj = wrldTime(map, data2, {
+                heatmap: true,
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom'
+            });
+            var wrldTimeObj = wrldTime(map, data2, {
+                heatmap: true,
+                horizontalPosition: 'right',
+                verticalPosition: 'bottom'
             });
         </script>
     </body>
