@@ -23,6 +23,13 @@ Date.prototype.addDays = function(days) {
 class WrldTime {
 
     constructor(map, data, options = {}) {
+        this.options = {
+            heatmap: options.heatmap || false,
+            showIndoorPointsExternally: false,
+            heatmapIntensity: options.heatmapIntensity || 50,
+            indoorHeatmapIntensity: options.indoorHeatmapIntensity || 1
+        }
+
         this._map = map;
         this.setData(data);
 
@@ -30,15 +37,36 @@ class WrldTime {
 
         // Handle indoor map interactions
         this._map.indoors.on('indoormapenter', () => {
+            var changed = false;
             if (this._layer != undefined) {
                 this._layer.options.indoorMapId = this._map.indoors.getActiveIndoorMap().getIndoorMapId();
                 this._layer.options.indoorMapFloorId = this._map.indoors.getFloor().getFloorIndex();
+                changed = true;
             }
+            if (this._heatmapLayer != undefined) {
+                this._heatmapLayer.options.indoorMapId = this._map.indoors.getActiveIndoorMap().getIndoorMapId();
+                this._heatmapLayer.options.indoorMapFloorId = this._map.indoors.getFloor().getFloorIndex();
+                this._heatmapLayer.options.intensityFactor = this.options.indoorHeatmapIntensity;
+                changed = true;
+            }
+            if (changed) this.setupTimeLayer();
         }); 
         this._map.indoors.on('indoormapexit', () => {
-            this._layer.options.indoorMapId = undefined;
-            this._layer.options.indoorMapFloorId = undefined;
+            var changed = false;
+            if (this._layer != undefined) {
+                this._layer.options.indoorMapId = undefined;
+                this._layer.options.indoorMapFloorId = undefined;
+                changed = true;
+            }
+            if (this._heatmapLayer != undefined) { 
+                this._heatmapLayer.options.indoorMapId = undefined;
+                this._heatmapLayer.options.indoorMapFloorId = undefined;
+                this._heatmapLayer.options.intensityFactor = this.options.heatmapIntensity;
+                changed = true;
+            }
+            if (changed) this.setupTimeLayer();
         });
+        this._map.indoors.on('indoormapfloorchange', this.setupTimeLayer.bind(this));
     }
 
     /**
@@ -105,25 +133,64 @@ class WrldTime {
                 if (props.indoorMapId != undefined) opts.indoorMapId = props.indoorMapId;
                 if (props.indoorMapFloorId != undefined) opts.indoorMapFloorId = props.indoorMapFloorId;
 
-                console.log(latlng);
-                console.log(opts);
-
                 return L.marker(latlng, opts);
             },
             filter: this.shouldShowFeature.bind(this)
         });
-        this._layer.addTo(this._map);
-    }
+        if (Object.keys(this._layer._layers).length != 0)
+            this._layer.addTo(this._map);
 
-    handleIndoorMapEnter() {
+        // Heatmapping
+        if (this.options.heatmap) {
+            let heatmapPoints = [];
+            this.data.features.forEach(feature => {
+                if (this.shouldShowFeature(feature, true)) {
+                    var coords = Array.from(feature.geometry.coordinates);
+                    var tmp = coords[0];
+                    coords[0] = coords[1];
+                    coords[1] = tmp;
+                    if (coords.length < 3) {
+                        if (this._map.indoors.isIndoors()) {
+                            console.log(coords);
+                            coords[2] = this._map.indoors.getFloorHeightAboveSeaLevel(this._map.indoors.getFloor().getFloorIndex()) - this._map.getAltitudeAtLatLng(L.latLng(coords));
+                        } else {
+                            coords[2] = 1;
+                        }
+                    }
+                    if (feature.properties.intensity) coords[3] = feature.properties.intensity;
+                    if (feature.type = 'Point') {
+                        heatmapPoints.push(coords);
+                    }
+                }
+            });
+            if (this._heatmapLayer != undefined) {
+                this._heatmapLayer.setLatLngs(heatmapPoints);
+            } else {
+                this._heatmapLayer = L.heatLayer(heatmapPoints).addTo(this._map);
+            }
 
+        }
     }
 
     /**
      * Returns true if the given feature should be displayed
      * @param {GeoJSON} feature the feature to test
      */
-    shouldShowFeature(feature) {
+    shouldShowFeature(feature, heatmap = false) {
+        // Heatmaps are handled outside of the GeoJSON layer
+        var isIndoors = this._map.indoors.isIndoors();
+        var featureIsIndoors = feature.properties.indoorMapId != undefined;
+
+        if (!heatmap && this.options.heatmap && feature.geometry.type == 'Point') return false;
+
+        if (isIndoors) {
+            var floor = this._map.indoors.getFloor().getFloorIndex();
+            if (!featureIsIndoors) return false;
+            if (feature.properties.indoorMapFloorId != floor) return false;
+        } else {
+            if (!this.options.showIndoorPointsExternally && featureIsIndoors) return false;
+        }
+
         return (new Date(feature.properties.date)) <= this._minDate.addDays((this._slider) ? this._slider.value : 0);
     }
 
