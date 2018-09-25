@@ -2,6 +2,108 @@
  * wrld.time.js - Time Series visualisation plugin
  */
 
+L.Control.ViewButton = L.Control.extend({
+    
+    options: {
+        position: 'topleft',
+		width: '80px',			//in pixels
+		height: '50px',			//in pixels
+		animateCamera: false,	//determines if the camera instantly snaps to new orientation
+		tilt: 0, 				//Camera Tilt when active
+		heading: 0				//Camera Heading when active
+    },
+	
+	initialize: function(display, options){
+		this.setDisplayText(display); 
+		L.setOptions(this, options);
+		
+		
+	},
+	
+	_displayText: "",
+	
+	_buttonState: false,
+
+	_prevCamHeading: 0, 
+	
+	_prevCamTilt: 0, 
+	
+	getDisplayText(){
+		return this._displayText; 
+	},
+	
+	setDisplayText(displayText){
+		this._displayText = displayText; 
+	},
+	
+	getPrevCamHeading: function(){
+		return this._prevCamHeading; 
+	},
+	
+	setPrevCamHeading: function(newHeading){
+		this._prevCamHeading = newHeading; 
+	},
+	
+	getPrevCamTilt: function(){
+		return this._prevCamTilt; 
+	},
+	
+	setPrevCamTilt: function(newTilt){
+		this._prevCamTilt = newTilt; 
+	},
+	
+	getButtonState: function(){return this._buttonState;},
+	
+	setButtonState: function(newState){this._buttonState = newState;},
+	
+    onAdd: function(map){
+		
+        var container = L.DomUtil.create('input', 'btn-container', this._container);
+        container.style.width = this.options.width;
+        container.style.height = this.options.height;
+		container.type = 'button';
+		container.value = this.getDisplayText();
+
+        L.DomEvent.addListener(container, 'click', function(){
+	
+			if(this.getButtonState() == false){ 
+				
+				this.setPrevCamHeading(map.getCameraHeadingDegrees());
+				this.setPrevCamTilt(map.getCameraTiltDegrees());
+				
+				console.log(this.options.animateCamera);
+				
+				map.setView(map.getCenter(), map.getZoom(), {
+					headingDegrees: this.options.heading, 
+					tiltDegrees: this.options.tilt, 
+					animate: this.options.animateCamera
+				}); 
+				
+				this.setButtonState(true); 
+						
+			}else{
+
+				map.setView(map.getCenter(), map.getZoom(), {
+					headingDegrees: this.getPrevCamHeading(), 
+					tiltDegrees: this.getPrevCamTilt(),
+					animate: this.options.animateCamera
+				}); 
+				
+				this.setButtonState(false);
+
+			}
+        }, this)
+
+        L.DomEvent.addListener(container, 'mouseover', function(){
+            //TODO prevent dragging on map when over element
+            //map.dragging = false;
+        });
+
+        return container;
+    }
+})
+
+
 L.Control.TimeSlider = L.Control.extend({
 
     /**
@@ -96,4 +198,39 @@ L.Control.TimeSlider = L.Control.extend({
 
 L.control.timeSlider = function(options) {
     return new L.Control.TimeSlider(options);
-}
+};
+
+
+/**
+ * EasyButton creator Test
+ */
+L.Control.TestButton = L.Control.extend({
+
+    /**
+     * Control options
+     */
+    options: {
+        position: 'topright',
+    },
+
+    /**
+     * Called when the control is added to the map
+     */
+    onAdd: function(map) {
+        // Create the button method
+        var easyButton = new L.Control.EasyButton(
+            //used to select the icon used on the button
+           'fa-compass', 
+           
+           //function called when button is clicked
+           function(){
+               map.setCameraHeadingDegrees(45).setCameraTiltDegrees(0)
+           },
+           
+           //Mouseover text
+           'Move Camera to a Top Down Perspective'
+         );
+
+        return easyButton;
+    }
+});
