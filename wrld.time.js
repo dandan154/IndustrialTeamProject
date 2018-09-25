@@ -94,6 +94,16 @@ class WrldTime {
         this._sliderContainer.classList.add('time-container');
 
         this._map._container.parentElement.parentElement.append(this._sliderContainer);
+
+        this._sliderContainer.style.visibility = "hidden"; 
+    }
+
+    getSliderContainer(){
+        return this._sliderContainer; 
+    }
+
+    getTimeLayer(){
+        return this._layer; 
     }
 
     /**
@@ -127,23 +137,31 @@ function wrldTime(map, data, options) {
 //TODO: CSS - FIX BUTTON STYLING - font awesome
 class WrldTimeUI{
 
-    constructor(map){
+    constructor(map, slider, layer){
         //Variables for button
+
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+
         this._prevHeading = 0;
         this._prevTilt = 0;
         this._newHeading = 0;
         this._newTilt = 0;
         this._animateCamera = true;
 
+        this._slider = slider;
+        this._layer = layer;  
         this._menu = this.createMenu(); 
         this._zoom = this.createZoom();
-        this._toggle = this.createToggleBtn(map, this._menu);
+        this._toggle = this.createToggleBtn(map, this._menu, this._slider, this._layer);
         this._toggle.addTo(map); 
         this._zoom.addTo(map); 
         this._isActive = true; 
+        
     }
 
-    createToggleBtn(map, menu){
+    createToggleBtn(map, menu, slider, layer){
         
 
 
@@ -173,6 +191,10 @@ class WrldTimeUI{
 
                 menu.addTo(map); 
 
+                slider.style.visibility = "visible"; 
+                layer.addTo(map); 
+                
+
                 //Changes the control state
                 control.state('turn-off'); //This is the stateName this button changes to
               }
@@ -194,7 +216,12 @@ class WrldTimeUI{
                 });
 
                 menu.remove(map); 
-                
+
+                slider.style.visibility = "hidden"; 
+                map.eachLayer(function (layer) {
+                    map.removeLayer(layer);
+                });
+
                 //Changes the button state
                 control.state('turn-on'); //This is the stateName this button changes to
               }
@@ -256,6 +283,6 @@ class WrldTimeUI{
 }
 
 
-function wrldTimeUI(map) {
-    return new WrldTimeUI(map);
+function wrldTimeUI(map, slider, layer) {
+    return new WrldTimeUI(map, slider, layer);
 }

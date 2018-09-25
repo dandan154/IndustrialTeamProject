@@ -48,11 +48,11 @@
             /**
              * Creates the wrldTime object
              */
-            wrldTime(map, data2, {
+            var w = wrldTime(map, data2, {
                 heatmap: true,
             });
-
-            wrldTimeUI(map);
+            
+            wrldTimeUI(map, w.getSliderContainer(), w.getTimeLayer());
 
            
         </script>
