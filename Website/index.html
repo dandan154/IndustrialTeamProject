@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<title>WRLD3D PLUGIN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>wrld.time.js Demo</title>
+        <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+        <script src="../wrld.time.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
+        <link rel="stylesheet" href="../wrld.time.css" />
+
+        <!--EasyButton CDN Files-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.3.0/easy-button.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.3.0/easy-button.js"></script>
+
+        <!--Import Dataset -->
+        <script src="../dataset.json"></script>
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <a href="#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
+    <a href="#How To" class="w3-bar-item w3-button w3-padding-large w3-hide-small">How To</a>
+    <a href="#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
+   <!-- <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">DropDown <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="#" class="w3-bar-item w3-button">Option</a>
+        <a href="#" class="w3-bar-item w3-button">Option</a>
+        <a href="#" class="w3-bar-item w3-button">Option</a>
+      </div>
+    </div>-->
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) 
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+</div>-->
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <img alt = "code image" src="images/Heatmap.png" style="width:50%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+    Bombings in Dundee during WWI
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="images/Heatmap.png" style="width:50%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+     A spare Example
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="images/Heatmap.png" style="width:50%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+     Another spare Example
+    </div>
+  </div>
+
+  <!--Section 2 -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="About">
+    <h2 class="w3-wide">Industrial Project Team 7 Heatmap </h2>
+    <p class="w3-justify"></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-third">
+       
+      </div>
+    </div>
+  </div>
+
+  <!-- What can you do Section -->
+  <div class="w3-black" id="How To">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">What can you do?</h2>
+      <p class="w3-opacity w3-center"><i>Heatmap generating plugin</i></p>
+      The aim of this piece of software is to allow you to import any data you wish which contains longitude latitude and time values, for it to then be represented as heatpoints for the data creating a heatmap.
+      For further look into how to achieve this check the documentation area below.
+      In the bottom of the page there is a live heatmap is shown where data was created to express bombings in the UK during WWI.
+      </ul>
+    </div>
+  </div>
+
+
+   <!-- Documentation -->
+   <div class="w3-white" id="How To">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">Documentation</h2>
+      <p class="w3-opacity w3-center"><i>How to create with the software</i></p>
+      <p class ="w3-opacity w3-left"><i>Style Sheet Dependencies</i></p><br><br><br>
+      wrld.time.js examples require the following CDN style Sheets<br>
+      
+      
+      <b>Standard Leaflet CSS</b><br>
+        &ltLink rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" /&gt<br>
+      
+      
+      <b>wrld.time.js Custome Style Sheet</b>
+      This style sheet also has custom easyButton templates<br>
+      &ltlink rel="stylesheet" href="wrld.time.css" /&gt<br>
+
+      <b>easyButton and Font Awesome</b>
+      These stylesheets are used purely for our exmaples, buttons are in fact no even required!<br>
+      <br>&ltlink rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"&gt<br>
+      <br>&ltlink href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.3.0/easy-button.css" rel="stylesheet"&gt<br>
+      <br>&ltlink rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous"&gt<br>
+      
+      
+      
+      <p class ="w3-opacity w3-left"><i>Other Dependencies</i></p><br><br><br>
+      <b>Wrld.js</b><br>
+      &ltscript src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt&lt/script&gt
+      <br>
+      
+      <p class ="w3-opacity w3-left"><i>Geojson</i></p><br><br><br>
+      <b>dataset.json</b><br>
+      var dataset = {<br>
+        <blockquote>"type": "FeatureCollection",<br>
+        "features": [<br>
+          {<br>
+            <blockquote>"geometry": {<br><blockquote>
+              "type": "Point",<br>
+              "coordinates": [<br>
+                56.46840475301886,<br>
+                -2.956357600297241<br>
+              ]<br></blockquote>
+            },<br><blockquote>
+            "type": "Feature",<br>
+            "id": 1,<br>
+            "properties": {<br>
+              "date": "2017-12-31",<br>
+              "town": "Dundee"<br>
+            }<br></blockquote>
+          }<br></blockquote>
+        ]</blockquote><br>
+      }<br>
+      <br>
+      
+      
+      <p class ="w3-opacity w3-left"><i>Downloads</i></p><br><br>
+      <p>
+          Check out the github repo at: <a href ="https://github.com/danieljmc/IndustrialTeamProject">https://github.com/danieljmc/IndustrialTeamProject</a>
+      </p>
+      </ul>
+    </div>
+  </div>
+
+
+  <!-- Code Snippets Section-->
+  <div class="w3-black" id="How To">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center"><i class="fas fa-code"style="width:30px"></i> Code Snippets </h2>
+      <p class="w3-opacity w3-center"><i>No need to datamine</i></p>
+      <p class ="w3-opacity w3-left"><i>Loading your map</i></p><br><br>
+      You will first need an API key for WRLD which can be obtained from <a href="https://www.wrld3d.com">wrld3d.com</a>.<br>
+      Following this you will need to add the wrld package, this varies per SDK and can be seen on the WRLD website.
+      <img alt = "Code Snippet for Loading Map" src="images/CodeSnippet2.png" style = "width:100%" ><br>
+      <p></p>
+      <img alt = "Code Snippet for Loading Map" src="images/CodeSnippet1.png" style = "width:100%" >
+
+    </div>
+  </div>
+
+
+
+
+
+  <!-- How To Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="Map">
+    <h2 class="w3-wide w3-center">How to use the software</h2>
+    <p class="w3-opacity w3-center"><i>Below you will find a guide on how to interact with the software</i></p>
+   
+    <i class="fa fa-toggle-off" style="width:30px">   </i>This is the toggle button used to display the heatmap data and to then remove the heatmap data.<br>
+    <i class="fa fa-toggle-on" style="width:30px">    </i>When enabled more options will appear.<br>
+    <i class="far fa-plus-square"style="width:30px">  </i>This is the zoom in button. Click this to zoom in, or use the mousewheel to zoom in.<br>
+    <i class="far fa-minus-square" style="width:30px"></i>This is the zoom out button. Click this to zoom out or use the mousewheel to zoom out.<br>
+    <i class="fas fa-paint-brush"  style="width:30px"></i>Use this to change colours of the heatmap on map.<br>
+    <i class="fas fa-glasses" style="width:30px">     </i>Use this to change the opacity of the heatmap.<br>
+    <i class="fas fa-clock"style="width:30px">        </i>The time slidebar can be used by leftclicking and dragging up or down.<br>
+    <i class="fas fa-redo-alt"style="width:30px">     </i>Reset you view to bird's eye. Helps keep heatmaps in perspective.
+  </div>
+  
+<!-- End Page Content -->
+</div>
+
+
+
+<!-- WRLD MAP-->
+<div id="map" style="height: 600px"></div>
+        
+<script>
+  var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", {
+      center: [ 56.462, -2.9707 ]
+  });
+
+  var arLen = dataset.features.length;
+  var pins = [];
+  var lines=[];
+  var heatmapPoints = [];
+
+  for (var i = 0; i < arLen; i++) {
+    var dataCoord = dataset.features[i].geometry.coordinates
+
+    if(dataset.features[i].geometry.type == "Point"){
+      heatmapPoints.push([dataCoord[0], dataCoord[1], 80])
+      pins.push(L.marker(dataCoord,
+                      { time: dataset.features[i].properties.date }));
+    }
+    else if(dataset.features[i].geometry.type == "LineString"){
+      lines.push(L.polyline(dataCoord, {time: dataset.features[i].properties.date}))
+    }
+
+  }
+  var lineLen = pins.length;
+  var pinLen = lines.length;
+  
+
+  var heat = L.heatLayer(heatmapPoints, {radius: 25});
+  var layerGroup = L.layerGroup(heat);
+  var time = L.control.timeSlider({ layer: layerGroup });
+
+  //Variables for button
+  var prevHeading = 0;
+  var prevTilt = 0;
+  var newHeading = 0;
+  var newTilt = 0;
+  var animateCamera = true;
+
+  /**
+   * This array stores the buttons for the heatmap menu
+   */
+  var menu = [
+      
+      //This is the colour button
+      L.easyButton(
+          '<i class="fas fa-paint-brush"></i>',
+          function(){
+              //TODO edit heatmaps colours
+          },
+          'Change the colours of the heatmap',
+          'colour-change-button'
+      ),
+      
+      //This is the Opacity button
+      L.easyButton(
+          '<i class="fas fa-glasses"></i>',
+          function(){
+              //TODO edit heatmaps opacity
+          },
+          'Change the Opacity of the heatmap',
+          'opacity-button'
+      ),
+
+      //This is the manual birds eye view button
+      L.easyButton(
+          '<i class="fas fa-redo-alt"></i>',
+          function(){
+              map.setView(map.getCenter(), map.getZoom(), {
+              headingDegrees: newHeading,
+              tiltDegrees: newTilt,
+              animate: animateCamera
+          });
+          },
+          'Reset the view',
+          'reset-view'
+      )
+  ];
+  
+  /**
+   * This variable controls the physical zoom buttons on the map
+   */
+  var zoombuttons = L.control.zoom({
+   position:'topright'
+  }).addTo(map);
+
+  /**
+   * This is the on/off switch for the heatmap
+   */
+  var toggle = L.easyButton({
+      id:'toggle',
+      position: 'topleft',
+      states: [{
+        stateName: 'turn-on',
+        icon: 'Turn Heatmap On <i class="fas fa-toggle-off"></i>',
+        title: 'Turn On Heatmap',
+
+        /**
+         * This controls what happens when the button is clicked
+         */
+        onClick: function(control) {
+          
+          //Sets the previous heading and tilt for the camera when heatmap is toggled off
+          prevHeading = map.getCameraHeadingDegrees();
+          prevTilt = map.getCameraTiltDegrees();
+          console.log(animateCamera);
+          
+          //This changes the view
+          map.setView(map.getCenter(), map.getZoom(), {
+              headingDegrees: newHeading,
+              tiltDegrees: newTilt,
+              animate: animateCamera
+          });
+          
+          //Adds the slider to the map
+          map.addControl(time);
+          
+          //Adds the heatmap menu
+          L.easyBar(menu).addTo(map); 
+          
+          //Adds the heatmap layer
+          heat.addTo(map);
+          
+          //Adds the lines and pins
+          for(var i = 0; i < lineLen; i++){
+              lines[i].addTo(map);
+          }
+
+          for(var i=0; i<pinLen; i++){
+              pins[i].addTo(map);
+          }
+          
+          //Changes the control state
+          control.state('turn-off'); //This is the stateName this button changes to
+        }
+      }, {
+        icon: 'Turn Heatmap Off <i class="fas fa-toggle-on"></i>',
+        stateName: 'turn-off',
+        title: 'Turn Off Heatmap',
+
+        /**
+         * This controls what happens when the button is clicked
+         */
+        onClick: function(control) {
+            
+          //Sets the view the button toggles
+          map.setView(map.getCenter(), map.getZoom(), {
+              headingDegrees: prevHeading,
+              tiltDegrees: prevTilt,
+              animate: animateCamera
+          });
+          
+          //Removes the heatmap menu
+          L.easyBar(menu).remove(map);
+          
+          //Removes the slider
+          time.remove(map);
+          
+          //Removes the heatmap
+          heat.remove(map);
+          
+          //Removes the lines and icons
+          for(var i = 0; i < lineLen; i++){
+              lines[i].remove(map);
+          }
+
+          for(var i=0; i<pinLen; i++){
+              pins[i].remove(map);
+          }
+          
+          //Changes the button state
+          control.state('turn-on'); //This is the stateName this button changes to
+        }
+      }]
+  });
+  
+  //Adds the toggle button to the map
+  toggle.addTo(map);           
+</script>
+
+
+
+
+
+
+<!-- Footer -->
+<footer>
+<p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
