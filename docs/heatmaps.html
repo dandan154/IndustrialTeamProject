@@ -2,14 +2,54 @@
     <head>
         <title>wrld.time.js Demo</title>        
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
-        <link rel="stylesheet" href="wrld.time.css" />
+        <link rel="stylesheet" href="css/wrld.time.css" />
+        <link rel="stylesheet" href="css/atom-one-dark.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+        <link rel="stylesheet" href="css/docs.css">
     </head>
     <body style="margin: 0">
-        <div id="map" style="height: 100%; width: 100%"></div>
+        <div class="page-container">
+        <div class="content">
+
+<h1>wrld.time.js</h1>
+<p class="centered"><a href="#">Examples</a> | <a href="#">Fork on GitHub</a></p>
+
+<h2>Heatmaps</h2>
+
+<h3>Basic usage</h3>
+
+<p>A heatmap can be added on both indoor and outdoor maps. To create a heatmap, first initialize the Wrld map:</p>
+
+<pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
+&lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
+&lt;script src="wrld.time.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
+        center: [ 56.462, -2.9707 ], 
+        indoorsEnabled: true 
+    });
+&lt;/script&gt;</code></pre>
+
+<p>Once the Wrld map has been created, initialise wrld.time.js with the heatmap option set to true:</p>
+
+<pre><code class="javascript">wrldTime(map, data2, {
+    heatmap: true
+});</code></pre>
+
+
+<h3>Intensity</h3>
+
+<p>Heatmaps may be used in a variety of situations.</p>
+
+
+</div>
+        <div class="map" id="map"></div>
+        </div>
         <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
-        <script src="heatmap.js"></script>
-        <script src="wrld.time.js"></script>
-        <script src="data.js"></script>
+        <script src="js/heatmap.js"></script>
+        <script src="js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script src="js/wrld.time.js"></script>
         <script>
             var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
                 center: [ 56.462, -2.9707 ],
@@ -45,11 +85,11 @@
 
             var dundeeCenter = [ -2.9707, 56.462 ];
             var dundeeRadius = 0.05;
-            var overgateCenter = [ -2.978318964344612, 56.46007119297972 ];
-            var overgateRadius = .0004;
-            var overgateMapId = 'westport_house';
+            var indoorCenter = [ -2.978318964344612, 56.46007119297972 ];
+            var indoorRadius = .0004;
+            var indoorMapId = 'westport_house';
             addRandomPins(features, dundeeCenter, dundeeRadius, 100);
-            addRandomPins(features, overgateCenter, overgateRadius, 100, overgateMapId);
+            addRandomPins(features, indoorCenter, indoorRadius, 100, indoorMapId);
             
             var data2 = {
                 "type": "FeatureCollection",
@@ -61,6 +101,9 @@
              */
             var wrldTimeObj = wrldTime(map, data2, {
                 heatmap: true,
+                heatmapColor: {},
+                horizontalPosition: 'right',
+                verticalPosition: 'bottom'
             });
         </script>
     </body>
