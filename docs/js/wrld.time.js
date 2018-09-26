@@ -31,11 +31,28 @@ class WrldTime {
             verticalPosition: options.verticalPosition || 'top',
             horizontalPosition: options.horizontalPosition || 'left'
         }
-
         this._map = map;
-        this.setData(data);
 
-        this.displaySlider();
+        if (typeof(data) == 'string') {
+            // Load data from URL
+            var req = new XMLHttpRequest();
+            var url = data;
+
+            req.onreadystatechange = (e) => {
+                if (req.readyState == 4 && req.status == 200) {
+                    let res = JSON.parse(req.responseText);
+                    console.log(res);
+                    this.setData(res);
+                    this.displaySlider();
+                }
+            };
+            req.open("GET", url, true);
+            req.send();
+        } else {
+            this.setData(data);
+            this.displaySlider();
+        }
+
 
         // Handle indoor map interactions
         this._map.indoors.on('indoormapenter', () => {
@@ -148,6 +165,8 @@ class WrldTime {
             this._layer.remove();
         }
 
+        if (this.data == undefined) return;
+
         this._layer = L.geoJSON(this.data, {
             pointToLayer: function(geoJsonPoint, latlng) {
                 var props = geoJsonPoint.properties;
@@ -183,17 +202,18 @@ class WrldTime {
                         }
                     }
                     if (feature.properties.intensity) coords[3] = feature.properties.intensity;
-                    if (feature.type = 'Point') {
+                    if (feature.type = 'Point' && coords[0].length == undefined) {
                         heatmapPoints.push(coords);
                     }
                 }
             });
-            if (this._heatmapLayer != undefined) {
-                this._heatmapLayer.setLatLngs(heatmapPoints);
-            } else {
-                this._heatmapLayer = L.heatLayer(heatmapPoints).addTo(this._map);
+            if (heatmapPoints.length > 0) {
+                if (this._heatmapLayer != undefined) {
+                    this._heatmapLayer.setLatLngs(heatmapPoints);
+                } else {
+                    this._heatmapLayer = L.heatLayer(heatmapPoints).addTo(this._map);
+                }
             }
-
         }
     }
 
