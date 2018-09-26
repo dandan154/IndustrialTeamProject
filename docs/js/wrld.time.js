@@ -101,17 +101,21 @@ class WrldTime {
      * Display the slider
      */
     displaySlider() {
-        this._container = document.createElement('div');
-        this._sliderContainer = document.createElement('div');
-        this._slider = document.createElement('input');
-
+        if (this._container == undefined) {
+            this._container = document.createElement('div');
+            this._sliderContainer = document.createElement('div');
+            this._slider = document.createElement('input');
+            this._sliderTimestamp = document.createElement('span');
+        }
+        
         this._slider.type = 'range';
         this._slider.classList.add('time-slider');
         this._slider.addEventListener('input', this.setupTimeLayer.bind(this));
         this._slider.min = 0;
         this._slider.max = this._steps;
 
-        this._sliderContainer.innerHTML = `Time: [Time stamp]<br>`;
+        this._sliderContainer.innerHTML = `Time:`;
+        this._sliderContainer.append(document.creat)
         this._sliderContainer.append(this._slider);
         this._sliderContainer.classList.add('time-slider-container');
 
@@ -130,6 +134,10 @@ class WrldTime {
         var wrldContainer = this._map._container.parentElement.parentElement;
         wrldContainer.style.position = 'relative';
         wrldContainer.append(this._container);
+    }
+
+    handleSliderChange() {
+        
     }
 
     /**
