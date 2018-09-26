@@ -124,15 +124,21 @@ class WrldTime {
             this._slider = document.createElement('input');
             this._sliderTimestamp = document.createElement('span');
         }
+
+        this._sliderTimestamp.id = 'wrld-time-timestamp';
+        this._sliderTimestamp.innerHTML = this._minDate.toLocaleDateString("en-GB");
         
         this._slider.type = 'range';
         this._slider.classList.add('time-slider');
-        this._slider.addEventListener('input', this.setupTimeLayer.bind(this));
+        this._slider.addEventListener('input', this.handleSliderChange.bind(this));
         this._slider.min = 0;
         this._slider.max = this._steps;
+        this._slider.value = 0;
 
-        this._sliderContainer.innerHTML = `Time:`;
-        this._sliderContainer.append(document.creat)
+        this._sliderContainer.innerHTML = 'Date: ';
+        this._sliderContainer.append(this._sliderTimestamp);
+        this._sliderContainer.innerHTML += '<br/>'
+        
         this._sliderContainer.append(this._slider);
         this._sliderContainer.classList.add('time-slider-container');
 
@@ -154,7 +160,12 @@ class WrldTime {
     }
 
     handleSliderChange() {
-        
+        var sliderTimestamp = document.getElementById('wrld-time-timestamp');
+        if (sliderTimestamp != undefined) {
+            var date = this._minDate.addDays(+this._slider.value);
+            sliderTimestamp.innerHTML = date.toLocaleDateString("en-US");
+        }
+        this.setupTimeLayer();
     }
 
     /**
@@ -236,7 +247,7 @@ class WrldTime {
             if (!this.options.showIndoorPointsExternally && featureIsIndoors) return false;
         }
 
-        return (new Date(feature.properties.date)) <= this._minDate.addDays((this._slider) ? this._slider.value : 0);
+        return (new Date(feature.properties.date)) <= this._minDate.addDays((this._slider) ? +this._slider.value : 0);
     }
 
 }

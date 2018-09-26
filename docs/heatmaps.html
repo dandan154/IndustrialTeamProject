@@ -32,14 +32,44 @@
 
 <p>Once the Wrld map has been created, initialise wrld.time.js with the heatmap option set to true:</p>
 
-<pre><code class="javascript">wrldTime(map, data2, {
+<pre><code class="javascript">wrldTime(map, data, {
     heatmap: true
 });</code></pre>
 
 
 <h3>Intensity</h3>
 
-<p>Heatmaps may be used in a variety of situations.</p>
+<h4>Global intensity factor</h4>
+
+<p>Heatmaps may be used in a variety of situations. For example, if you have a sparse data set, you may wish that each point in your data set is displayed more intensely. Another example is that you should have different intensities when displaying a heatmap of cities compared to displaying a heatmap of countries.</p>
+
+<p>You can also set an indoor intensity factor which is applied to indoor data points. By default the global intensity is set to 50 and the indoor heatmap intensity is set to 1. This can be overriden when constructing the wrldTime object:</p>
+
+<pre><code class="javascript">wrldTime(map, data, {
+    heatmap: true,
+    heatmapIntensity: 80,
+    indoorHeatmapIntensity: 0.6
+});</code></pre>
+
+
+<h4>Intensities on data points</h4>
+
+<p>You can also apply intensities to specific data points, for example if you are visualising the population of cities, each city would have an associated intensity (in this case the number of inhabitants).</p>
+
+<p>This can be set in the GeoJSON feature, under the intensity property. In the below example, we set the intensity of this feature to 31:</p>
+
+<pre><code class="json">{
+    "geometry": {
+        "type": "Point",
+        "coordinates": [ -2.988967373895398, 56.45511052483176 ]
+    },
+    "type": "Feature",
+    "id": 0,
+    "properties": {
+        "date": "2018-07-06",
+        "intensity": 31
+    }
+}</code></pre>
 
 
 </div>
@@ -57,28 +87,13 @@
                 indoorsEnabled: true
             });
 
-            var features = [];
-
-            var dundeeCenter = [ -2.9707, 56.462 ];
-            var dundeeRadius = 0.05;
-            var indoorCenter = [ -2.978318964344612, 56.46007119297972 ];
-            var indoorRadius = .0004;
-            var indoorMapId = 'westport_house';
-            addRandomPins(features, dundeeCenter, dundeeRadius, 100);
-            addRandomPins(features, indoorCenter, indoorRadius, 100, indoorMapId);
-            
-            var data = {
-                "type": "FeatureCollection",
-                "features": features
-            }
-
             /**
              * Creates the wrldTime object
              */
             var wrldTimeObj = wrldTime(map, '/docs/data/random.json', {
                 heatmap: true,
                 heatmapColor: {},
-                horizontalPosition: 'right',
+                horizontalPosition: 'center',
                 verticalPosition: 'bottom'
             });
         </script>
