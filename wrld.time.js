@@ -126,6 +126,8 @@ class WrldTime {
             this._sliderTimestamp = document.createElement('span');
         }
 
+        this._container.id = 'wrld-time-container';
+
         this._sliderTimestamp.id = 'wrld-time-timestamp';
         this._sliderTimestamp.innerHTML = this._minDate.toLocaleDateString("en-GB");
         
