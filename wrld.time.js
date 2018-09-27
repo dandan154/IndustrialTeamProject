@@ -31,11 +31,28 @@ class WrldTime {
             verticalPosition: options.verticalPosition || 'top',
             horizontalPosition: options.horizontalPosition || 'left'
         }
-
         this._map = map;
-        this.setData(data);
 
-        this.displaySlider();
+        if (typeof(data) == 'string') {
+            // Load data from URL
+            var req = new XMLHttpRequest();
+            var url = data;
+
+            req.onreadystatechange = (e) => {
+                if (req.readyState == 4 && req.status == 200) {
+                    let res = JSON.parse(req.responseText);
+                    console.log(res);
+                    this.setData(res);
+                    this.displaySlider();
+                }
+            };
+            req.open("GET", url, true);
+            req.send();
+        } else {
+            this.setData(data);
+            this.displaySlider();
+        }
+
 
         // Handle indoor map interactions
         this._map.indoors.on('indoormapenter', () => {
@@ -107,15 +124,21 @@ class WrldTime {
             this._slider = document.createElement('input');
             this._sliderTimestamp = document.createElement('span');
         }
+
+        this._sliderTimestamp.id = 'wrld-time-timestamp';
+        this._sliderTimestamp.innerHTML = this._minDate.toLocaleDateString("en-GB");
         
         this._slider.type = 'range';
         this._slider.classList.add('time-slider');
-        this._slider.addEventListener('input', this.setupTimeLayer.bind(this));
+        this._slider.addEventListener('input', this.handleSliderChange.bind(this));
         this._slider.min = 0;
         this._slider.max = this._steps;
+        this._slider.value = 0;
 
-        this._sliderContainer.innerHTML = `Time:`;
-        this._sliderContainer.append(document.creat)
+        this._sliderContainer.innerHTML = 'Date: ';
+        this._sliderContainer.append(this._sliderTimestamp);
+        this._sliderContainer.innerHTML += '<br/>'
+        
         this._sliderContainer.append(this._slider);
         this._sliderContainer.classList.add('time-slider-container');
 
@@ -137,7 +160,12 @@ class WrldTime {
     }
 
     handleSliderChange() {
-        
+        var sliderTimestamp = document.getElementById('wrld-time-timestamp');
+        if (sliderTimestamp != undefined) {
+            var date = this._minDate.addDays(+this._slider.value);
+            sliderTimestamp.innerHTML = date.toLocaleDateString("en-US");
+        }
+        this.setupTimeLayer();
     }
 
     /**
@@ -147,6 +175,8 @@ class WrldTime {
         if (this._layer != undefined) {
             this._layer.remove();
         }
+
+        if (this.data == undefined) return;
 
         this._layer = L.geoJSON(this.data, {
             pointToLayer: function(geoJsonPoint, latlng) {
@@ -183,17 +213,18 @@ class WrldTime {
                         }
                     }
                     if (feature.properties.intensity) coords[3] = feature.properties.intensity;
-                    if (feature.type = 'Point') {
+                    if (feature.type = 'Point' && coords[0].length == undefined) {
                         heatmapPoints.push(coords);
                     }
                 }
             });
-            if (this._heatmapLayer != undefined) {
-                this._heatmapLayer.setLatLngs(heatmapPoints);
-            } else {
-                this._heatmapLayer = L.heatLayer(heatmapPoints).addTo(this._map);
+            if (heatmapPoints.length > 0) {
+                if (this._heatmapLayer != undefined) {
+                    this._heatmapLayer.setLatLngs(heatmapPoints);
+                } else {
+                    this._heatmapLayer = L.heatLayer(heatmapPoints).addTo(this._map);
+                }
             }
-
         }
     }
 
