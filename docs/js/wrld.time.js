@@ -25,11 +25,13 @@ class WrldTime {
     constructor(map, data, options = {}) {
         this.options = {
             heatmap: options.heatmap || false,
+            heatmapOptions: options.heatmapOptions || {},
             showIndoorPointsExternally: false,
             heatmapIntensity: options.heatmapIntensity || 50,
             indoorHeatmapIntensity: options.indoorHeatmapIntensity || 1,
             verticalPosition: options.verticalPosition || 'top',
-            horizontalPosition: options.horizontalPosition || 'left'
+            horizontalPosition: options.horizontalPosition || 'left',
+            style: options.style
         }
         this._map = map;
 
@@ -125,6 +127,8 @@ class WrldTime {
             this._sliderTimestamp = document.createElement('span');
         }
 
+        this._container.id = 'wrld-time-container';
+
         this._sliderTimestamp.id = 'wrld-time-timestamp';
         this._sliderTimestamp.innerHTML = this._minDate.toLocaleDateString("en-GB");
         
@@ -190,6 +194,7 @@ class WrldTime {
 
                 return L.marker(latlng, opts);
             },
+            style: this.options.style,
             filter: this.shouldShowFeature.bind(this)
         });
         if (Object.keys(this._layer._layers).length != 0)
@@ -222,7 +227,7 @@ class WrldTime {
                 if (this._heatmapLayer != undefined) {
                     this._heatmapLayer.setLatLngs(heatmapPoints);
                 } else {
-                    this._heatmapLayer = L.heatLayer(heatmapPoints).addTo(this._map);
+                    this._heatmapLayer = L.heatLayer(heatmapPoints, this.options.heatmapOptions).addTo(this._map);
                 }
             }
         }
@@ -247,7 +252,7 @@ class WrldTime {
             if (!this.options.showIndoorPointsExternally && featureIsIndoors) return false;
         }
 
-        return (new Date(feature.properties.date)) <= this._minDate.addDays((this._slider) ? +this._slider.value : 0);
+        return (new Date(feature.properties.date)) <= this._minDate.addDays((this._slider) ? this._slider.value : 0);
     }
 
 }

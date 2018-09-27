@@ -30,7 +30,8 @@ class WrldTime {
             heatmapIntensity: options.heatmapIntensity || 50,
             indoorHeatmapIntensity: options.indoorHeatmapIntensity || 1,
             verticalPosition: options.verticalPosition || 'top',
-            horizontalPosition: options.horizontalPosition || 'left'
+            horizontalPosition: options.horizontalPosition || 'left',
+            style: options.style
         }
         this._map = map;
 
@@ -193,6 +194,7 @@ class WrldTime {
 
                 return L.marker(latlng, opts);
             },
+            style: this.options.style,
             filter: this.shouldShowFeature.bind(this)
         });
         if (Object.keys(this._layer._layers).length != 0)

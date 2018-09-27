@@ -144,12 +144,31 @@ body {font-family: "Lato", sans-serif}
         indoorsEnabled: true
     });
 
+    function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
+
+    var colors = {};
+
     /**
      * Creates the wrldTime object
      */
     var wrldTimeObj = wrldTime(map, 'data/polygons.json', {
         horizontalPosition: 'center',
-        verticalPosition: 'bottom'
+        verticalPosition: 'bottom',
+        style: (feature) => {
+            if (colors[feature.id] == undefined) {
+                colors[feature.id] = getRandomColor()
+            }
+            return {
+                color: colors[feature.id]
+            }
+        }
     });
 </script>
 
