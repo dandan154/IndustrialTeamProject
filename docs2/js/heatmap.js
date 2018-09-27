@@ -8,9 +8,14 @@
 'use strict';
 L.HeatLayer = (L.Layer ? L.Layer : L.Class).extend({
 
-    options: {
-        intensityFactor: 40
-    },
+    // options: {
+    //     minOpacity: 0.05,
+    //     maxZoom: 18,
+    //     radius: 25,
+    //     blur: 15,
+    //     max: 1.0,
+    //     intensityFactor: 40
+    // },
 
     initialize: function (latlngs, options) {
         this._latlngs = latlngs;

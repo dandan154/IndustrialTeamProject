@@ -1,4 +1,4 @@
-function addRandomPins(features, centerCoords, radius, number, indoorId, indoorFloor = 0) {
+function addRandomPins(features, centerCoords, radius, number, indoorId) {
     for (var i = 0; i < number; i++) {
         var month = Math.floor(Math.random()*8)+1;
         var day = Math.floor(Math.random()*8)+1;
@@ -17,7 +17,7 @@ function addRandomPins(features, centerCoords, radius, number, indoorId, indoorF
                 "town": "Dundee", 
                 "intensity": 31,
                 "indoorMapId": indoorId,
-                "indoorMapFloorId": (indoorId) ? indoorFloor : undefined
+                "indoorMapFloorId": (indoorId) ? 2 : undefined
             }
         });
     }
