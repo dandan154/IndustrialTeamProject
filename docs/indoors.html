@@ -1,61 +1,111 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>wrld.time.js Demo</title>        
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
-        <link rel="stylesheet" href="css/wrld.time.css" />
-        <link rel="stylesheet" href="css/atom-one-dark.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-        <link rel="stylesheet" href="css/docs.css">
-        <link href="https://cdn-webgl.wrld3d.com/wrldjs/addons/resources/latest/css/wrld.css" rel="stylesheet"/>
-        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-        <script src="https://cdn-webgl.wrld3d.com/wrldjs/addons/indoor_control/latest/indoor_control.js"></script>
-    </head>
-    <body style="margin: 0">
-        <div class="page-container">
-        <div class="content">
 
-<h1>wrld.time.js</h1>
-<p class="centered"><a href="#">Examples</a> | <a href="#">Fork on GitHub</a></p>
+<meta charset="UTF-8">
 
-<h2>Indoors</h2>
+<title>wrld.time.js Demo</title>        
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
+<link rel="stylesheet" href="css/wrld.time.css" />
+<link rel="stylesheet" href="css/atom-one-dark.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+<link rel="stylesheet" href="css/docs.css">
+<link href="https://cdn-webgl.wrld3d.com/wrldjs/addons/resources/latest/css/wrld.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+<script src="https://cdn-webgl.wrld3d.com/wrldjs/addons/indoor_control/latest/indoor_control.js"></script>
 
-<h3>Getting started</h3>
-<p>Indoors time series visualisation is supported in wrld.time.js. To label data points as being indoors, please refer to the <a href="geojson.html">GeoJSON guide</a>.</p>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+  <body>
 
-<p>First, setup your Wrld map:</p>
-
-<pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
-&lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
-&lt;script src="wrld.time.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-    var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
-        center: [ 56.462, -2.9707 ], 
-        indoorsEnabled: true 
-    });
-&lt;/script&gt;</code></pre>
-
-<p>Next, you can create a wrldTime object by passing in the Wrld map instance and your data:</p>
-
-<pre><code class="javascript">wrldTime(map, data);</code></pre>
-
-<p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
-
-<h3>Options</h3>
-<h4>showIndoorPointsExternally</h4>
-You can set the "showIndoorPointsExternally" option to true if you want to display indoor data points on the global map:
-
-<pre><code class="javascript">wrldTime(map, data, {
-    showIndoorPointsExternally: true
-});</code></pre>
-
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="index.html#Home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <a href="index.html#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
+    <a href="index.html#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+        <button class="w3-padding-large w3-button" title="More">Documentation<i class="fa fa-caret-down"></i></button>     
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+            <a href="quickstart.html" class="w3-bar-item w3-button">Quickstart</a>
+            <a href="geojson.html" class="w3-bar-item w3-button">Geojson</a>
+            <a href="heatmaps.html" class="w3-bar-item w3-button">Heatmaps</a>
+            <a href="indoors.html" class="w3-bar-item w3-button">Indoors</a>
+            <a href="customising.html" class = "w3-bar-item w3-button">Customising</a>
+        </div>
+      </div>
+      <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
+    </div>
+  </div>
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
+  </div>
 </div>
-        <div style="position: relative; flex-grow: 1; width: 50%;">
-            <div id="widget-container" class="wrld-widget-container"></div>
-            <div class="map" id="map" style="width: 100%;"></div>
-        </div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) 
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+</div>-->
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  
+
+
+
+
+   <!--Initial Section-->
+   <div class="w3-white" id="sec1">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">Documentation</h2>
+      <p class="w3-opacity w3-center"><i>How to create with the software</i></p>
+      </div>
+      </div>
+      <div class="w3-white" id="sec1">
+        <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+          
+            <p>wrld.time.js is a plugin for <a href="https://wrld3d.com">Wrld3d</a> which allows for the visualisation of time series data.</p>
+            <p>To begin using the plugin, you will need to either have your data in a GeoJSON format, or convert it to one. Learn more about the GeoJSON format by <a href="geojson.html">visiting our GeoJSON guide</a>.</p>
+            <p>First, setup your Wrld map:</p>
+            
+            <pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
+            &lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
+            &lt;script src="wrld.time.js"&gt;&lt;/script&gt;
+            &lt;script&gt;
+                var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
+                    center: [ 56.462, -2.9707 ], 
+                    indoorsEnabled: true 
+                });
+            &lt;/script&gt;</code></pre>
+            
+            <p>Next, you can create a wrldTime object by passing in the Wrld map instance and your data:</p>
+            
+            <pre><code class="javascript">wrldTime(map, data);</code></pre>
+            
+            <p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
+            </div>
+    
+  
+<!-- End Page Content -->
+
+
+
+
+<!-- WRLD MAP-->
+<div style="position: relative; flex-grow: 1; width: 200%; ">
+    <div id="widget-container" class="wrld-widget-container"></div>
+    <div class="map" id="map" style = "height:680px"></div>
+</div>
         
-        </div>
         <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
         <script src="js/heatmap.js"></script>
         <script src="js/highlight.pack.js"></script>
@@ -91,5 +141,41 @@ You can set the "showIndoorPointsExternally" option to true if you want to displ
                 }, 1000);
             });
         </script>
-    </body>
+
+
+
+
+
+<!-- Footer -->
+<footer>
+<p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+
+
+
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
 </html>

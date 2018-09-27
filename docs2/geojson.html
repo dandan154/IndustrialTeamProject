@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>wrld.time.js Demo</title>        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
+        <link rel="stylesheet" href="css/wrld.time.css" />
+        <link rel="stylesheet" href="css/atom-one-dark.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+        <link rel="stylesheet" href="css/docs.css">
+    </head>
+    <body style="margin: 0">
+        <div class="page-container">
+        <div class="content">
+
+<h1>wrld.time.js</h1>
+<p class="centered"><a href="#">Examples</a> | <a href="#">Fork on GitHub</a></p>
+
+<h2>GeoJSON</h2>
+
+<h3>Introduction</h3>
+<p>GeoJSON is a format for encoding a variety of geographic data structures. See <a href="http://geojson.org/">geojson.org</a> for more information.</p>
+
+<p>GeoJSON supports the following geometry types: Point, LineString, Polygon, MultiPoint, MultiLineString, and MultiPolygon. Geometric objects with additional properties are Feature objects. Sets of features are contained by FeatureCollection objects.</p>
+
+<p>For further information on adding different types, refer to the <a href="https://leafletjs.com/examples/geojson/">Leaflet GeoJSON examples.</a>
+
+<a name="indoors"></a>
+<h3>Indoor support</h3>
+<p>Features can be set to indoors by specifying the 'indoorMapId' and 'indoorMapFloorId' properties:</p>
+<pre><code class="json">{
+    "geometry": {
+        "type": "Point",
+        "coordinates": [ -2.988967373895398, 56.45511052483176 ]
+    },
+    "type": "Feature",
+    "id": 0,
+    "properties": {
+        "date": "2018-07-06",
+        "indoorMapId": "westport_house",
+        "indoorMapFloorId": 2
+    }
+}</code></pre>
+
+<p>Refer to the <a href="indoors.html">indoor examples</a> for more information on displaying time-series data indoors.</p> 
+
+<a name="heatmap"></a>
+<h3>Heatmap intensity</h3>
+<p>You may wish to apply intensities to specific data points, for example if you are visualising the population of cities, each city would have an associated intensity (in this case the number of inhabitants).</p>
+
+<p>This can be set in the GeoJSON feature, under the intensity property. In the below example, we set the intensity of this feature to 31:</p>
+
+<pre><code class="json">{
+    "geometry": {
+        "type": "Point",
+        "coordinates": [ -2.988967373895398, 56.45511052483176 ]
+    },
+    "type": "Feature",
+    "id": 0,
+    "properties": {
+        "date": "2018-07-06",
+        "intensity": 31
+    }
+}</code></pre>
+
+</div>
+        <div class="map" id="map"></div>
+        </div>
+        <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+        <script src="js/heatmap.js"></script>
+        <script src="js/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script src="js/wrld.time.js"></script>
+        <script src="js/randomDataGenerator.js"></script>
+        <script>
+            var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
+                center: [ 56.462, -2.9707 ],
+                indoorsEnabled: true
+            });
+
+            var features = [];
+            var dundeeCenter = [ -2.9707, 56.462 ];
+            var dundeeRadius = 0.05;
+            var indoorCenter = [ -2.978318964344612, 56.46007119297972 ];
+             var indoorRadius = .0004;
+             var indoorMapId = 'westport_house';
+            addRandomPins(features, dundeeCenter, dundeeRadius, 100000);
+            var data = {
+                "type": "FeatureCollection",
+                "features": features
+            }
+
+            /**
+             * Creates the wrldTime object
+             */
+            var wrldTimeObj = wrldTime(map, data, {
+                horizontalPosition: 'center',
+                verticalPosition: 'bottom',
+                heatmapIntensity: 1,
+                heatmap: true
+            });
+        </script>
+    </body>
+</html>
