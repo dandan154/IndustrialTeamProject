@@ -77,15 +77,15 @@ body {font-family: "Lato", sans-serif}
           
             <p>A heatmap can be added on both indoor and outdoor maps. To create a heatmap, first initialize the Wrld map:</p>
 
-            <pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
-            &lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
-            &lt;script src="wrld.time.js"&gt;&lt;/script&gt;
-            &lt;script&gt;
-                var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
-                    center: [ 56.462, -2.9707 ], 
-                    indoorsEnabled: true 
-                });
-            &lt;/script&gt;</code></pre>
+<pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
+&lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
+&lt;script src="wrld.time.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
+        center: [ 56.462, -2.9707 ], 
+        indoorsEnabled: true 
+    });
+&lt;/script&gt;</code></pre>
             
             <p>Once the Wrld map has been created, initialise wrld.time.js with the heatmap option set to true:</p>
             
