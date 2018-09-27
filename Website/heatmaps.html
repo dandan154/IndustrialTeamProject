@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<title>WRLD3D PLUGIN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/atom-one-dark.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>wrld.time.js Demo</title>
+        <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+        <script src="../wrld.time.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
+        <link rel="stylesheet" href="../wrld.time.css" />
+
+        <!--EasyButton CDN Files-->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.3.0/easy-button.css" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.3.0/easy-button.js"></script>
+
+        <!--Import Dataset -->
+        <script src="../dataset.json"></script>
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="index.html" class="w3-bar-item w3-button w3-padding-large">Home</a>
+    <a href="index.html#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
+    <a href="index.html#How To" class="w3-bar-item w3-button w3-padding-large w3-hide-small">How To</a>
+    <a href="index.html#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+        <button class="w3-padding-large w3-button" title="More">Examples<i class="fa fa-caret-down"></i></button>     
+        <div class="w3-dropdown-content w3-bar-block w3-card-4">
+            <a href="quickstart.html" class="w3-bar-item w3-button">Quickstart</a>
+            <a href="geojson.html" class="w3-bar-item w3-button">Geojson</a>
+            <a href="heatmaps.html" class="w3-bar-item w3-button">Heatmaps</a>
+            <a href="indoors.html" class="w3-bar-item w3-button">Indoors</a>
+            <a href="customising.html" class = "w3-bar-item w3-button">Customising</a>
+        </div>
+      </div>
+      <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
+    </div>
+  </div>
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) 
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
+</div>-->
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  
+
+
+
+
+   <!--Initial Section-->
+   <div class="w3-white" id="sec1">
+    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+      <h2 class="w3-wide w3-center">Heatmaps</h2>
+      <p class="w3-opacity w3-center"><i>How to create with the software</i></p>
+      </div>
+      </div>
+      <div class="w3-white" id="sec1">
+        <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
+          
+            <p>wrld.time.js is a plugin for <a href="https://wrld3d.com">Wrld3d</a> which allows for the visualisation of time series data.</p>
+            <p>To begin using the plugin, you will need to either have your data in a GeoJSON format, or convert it to one. Learn more about the GeoJSON format by <a href="geojson.html">visiting our GeoJSON guide</a>.</p>
+            <p>First, setup your Wrld map:</p>
+            
+            <pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
+            &lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
+            &lt;script src="wrld.time.js"&gt;&lt;/script&gt;
+            &lt;script&gt;
+                var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
+                    center: [ 56.462, -2.9707 ], 
+                    indoorsEnabled: true 
+                });
+            &lt;/script&gt;</code></pre>
+            
+            <p>Next, you can create a wrldTime object by passing in the Wrld map instance and your data:</p>
+            
+            <pre><code class="javascript">wrldTime(map, data);</code></pre>
+            
+            <p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
+    
+    
+  
+<!-- End Page Content -->
+
+
+
+
+<!-- WRLD MAP-->
+
+</div>
+<div class="map" id="map"style="height: 680px"></div>
+</div>
+<script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+<script src="js/heatmap.js"></script>
+<script src="js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="js/wrld.time.js"></script>
+<script>
+    var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
+        center: [ 56.462, -2.9707 ],
+        indoorsEnabled: true
+    });
+
+    /**
+     * Creates the wrldTime object
+     */
+    var wrldTimeObj = wrldTime(map, '/data/random.json', {
+        horizontalPosition: 'center',
+        verticalPosition: 'bottom'
+    });
+</script>
+
+
+
+
+
+<!-- Footer -->
+<footer>
+<p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
