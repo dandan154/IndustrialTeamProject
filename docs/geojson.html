@@ -17,25 +17,49 @@
 <h2>GeoJSON</h2>
 
 <h3>Introduction</h3>
-<p>wrld.time.js is a plugin for <a href="https://wrld3d.com">Wrld3d</a> which allows for the visualisation of time series data.</p>
-<p>To begin using the plugin, you will need to either have your data in a GeoJSON format, or convert it to one. Learn more about the GeoJSON format by <a href="geojson.html">visiting our GeoJSON guide</a>.</p>
-<p>First, setup your Wrld map:</p>
+<p>GeoJSON is a format for encoding a variety of geographic data structures. See <a href="http://geojson.org/">geojson.org</a> for more information.</p>
 
-<pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
-&lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
-&lt;script src="wrld.time.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-    var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
-        center: [ 56.462, -2.9707 ], 
-        indoorsEnabled: true 
-    });
-&lt;/script&gt;</code></pre>
+<p>GeoJSON supports the following geometry types: Point, LineString, Polygon, MultiPoint, MultiLineString, and MultiPolygon. Geometric objects with additional properties are Feature objects. Sets of features are contained by FeatureCollection objects.</p>
 
-<p>Next, you can create a wrldTime object by passing in the Wrld map instance and your data:</p>
+<p>For further information on adding different types, refer to the <a href="https://leafletjs.com/examples/geojson/">Leaflet GeoJSON examples.</a>
 
-<pre><code class="javascript">wrldTime(map, data);</code></pre>
+<a name="indoors"></a>
+<h3>Indoor support</h3>
+<p>Features can be set to indoors by specifying the 'indoorMapId' and 'indoorMapFloorId' properties:</p>
+<pre><code class="json">{
+    "geometry": {
+        "type": "Point",
+        "coordinates": [ -2.988967373895398, 56.45511052483176 ]
+    },
+    "type": "Feature",
+    "id": 0,
+    "properties": {
+        "date": "2018-07-06",
+        "indoorMapId": "westport_house",
+        "indoorMapFloorId": 2
+    }
+}</code></pre>
 
-<p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
+<p>Refer to the <a href="indoors.html">indoor examples</a> for more information on displaying time-series data indoors.</p> 
+
+<a name="heatmap">
+<h3>Heatmap intensity</h3>
+<p>You may wish to apply intensities to specific data points, for example if you are visualising the population of cities, each city would have an associated intensity (in this case the number of inhabitants).</p>
+
+<p>This can be set in the GeoJSON feature, under the intensity property. In the below example, we set the intensity of this feature to 31:</p>
+
+<pre><code class="json">{
+    "geometry": {
+        "type": "Point",
+        "coordinates": [ -2.988967373895398, 56.45511052483176 ]
+    },
+    "type": "Feature",
+    "id": 0,
+    "properties": {
+        "date": "2018-07-06",
+        "intensity": 31
+    }
+}</code></pre>
 
 </div>
         <div class="map" id="map"></div>
@@ -54,7 +78,7 @@
             /**
              * Creates the wrldTime object
              */
-            var wrldTimeObj = wrldTime(map, '/data/random.json', {
+            var wrldTimeObj = wrldTime(map, 'data/random.json', {
                 horizontalPosition: 'center',
                 verticalPosition: 'bottom'
             });
