@@ -73,7 +73,7 @@ You can set the "showIndoorPointsExternally" option to true if you want to displ
             /**
              * Creates the wrldTime object
              */
-            var wrldTimeObj = wrldTime(map, '/data/indoors.json', {
+            var wrldTimeObj = wrldTime(map, 'data/indoors.json', {
                 heatmap: true,
                 horizontalPosition: 'center',
                 verticalPosition: 'bottom',
@@ -86,7 +86,9 @@ You can set the "showIndoorPointsExternally" option to true if you want to displ
                     map.indoors.enter('westport_house');
             });
             map.indoors.on('indoormapenter', () => {
-                wrldTimeObj._heatmapLayer.options.intensityFactor = 0.8
+                setTimeout(() => {
+                    wrldTimeObj._heatmapLayer.options.intensityFactor = 0.8
+                }, 1000);
             });
         </script>
     </body>
