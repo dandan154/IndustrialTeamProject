@@ -14,28 +14,43 @@
 <h1>wrld.time.js</h1>
 <p class="centered"><a href="#">Examples</a> | <a href="#">Fork on GitHub</a></p>
 
-<h2>Quickstart</h2>
+<h2>Customising</h2>
 
-<h3>Introduction</h3>
-<p>wrld.time.js is a plugin for <a href="https://wrld3d.com">Wrld3d</a> which allows for the visualisation of time series data.</p>
-<p>To begin using the plugin, you will need to either have your data in a GeoJSON format, or convert it to one. Learn more about the GeoJSON format by <a href="geojson.html">visiting our GeoJSON guide</a>.</p>
-<p>First, setup your Wrld map:</p>
+<h3>Time slider</h3>
 
-<pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
-&lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
-&lt;script src="wrld.time.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-    var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
-        center: [ 56.462, -2.9707 ], 
-        indoorsEnabled: true 
-    });
-&lt;/script&gt;</code></pre>
+<h4>Position</h4>
+<p>The position of the time slider can be changed from the wrldTime options.</p>
+<p>To set the horizontal position, use the 'horizontalPosition' property (accepts 'left', 'center' or 'right'), and to set the vertical position use the 'verticalPosition' property (accepts 'top' and 'bottom'):</p>
+<pre><code class="javascript">wrldTime(map, data, {
+    horizontalPosition: 'left' || 'center' || 'right',
+    verticalPosition: 'top' || 'bottom'
+});</code></pre>
 
-<p>Next, you can create a wrldTime object by passing in the Wrld map instance and your data:</p>
+<h4>Native styling</h4>
+<p>CSS can be used to style the time slider component. The container is has the class '.time-slider-container', and the slider itself has the class '.time-slider'. Use '.time-slider::-webkit-slider-thumb' and '.time-slider::-moz-range-thumb' to style the thumb of the slider.</p>
 
-<pre><code class="javascript">wrldTime(map, data);</code></pre>
+<h3>Heatmap customisation</h3>
 
-<p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
+<p>Heatmap options can be set by setting the heatmapOptions option on the wrldTime constructor:</p>
+
+<pre><code class="javascript">wrldTime(map, data, {
+    heatmapOptions: {
+        minOpacity: 0.5,
+        maxZoom: 16,
+        max: 1,
+        radius: 25,
+        blur: 15,
+        gradient: {0.4: 'blue', 0.65: 'lime', 1: 'red'}
+    }
+});</code></pre>
+
+<p>The available heatmap options are: </p>
+<p><b>minOpacity</b> - the minimum opacity the heat will start at</p>
+<p><b>maxZoom</b> - zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default</p>
+<p><b>max</b> - maximum point intensity, 1.0 by default</p>
+<p><b>radius</b> - radius of each "point" of the heatmap, 25 by default</p>
+<p><b>blur</b> - amount of blur, 15 by default</p>
+<p><b>gradient</b> - color gradient config, e.g. {0.4: 'blue', 0.65: 'lime', 1: 'red'}</p>
 
 </div>
         <div class="map" id="map"></div>
