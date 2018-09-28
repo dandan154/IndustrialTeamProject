@@ -73,10 +73,13 @@ body {font-family: "Lato", sans-serif}
       <div class="w3-white" id="sec1">
         <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
           
-            <p>wrld.time.js is a plugin for <a href="https://wrld3d.com">Wrld3d</a> which allows for the visualisation of time series data.</p>
-            <p>To begin using the plugin, you will need to either have your data in a GeoJSON format, or convert it to one. Learn more about the GeoJSON format by <a href="geojson.html">visiting our GeoJSON guide</a>.</p>
-            <p>First, setup your Wrld map:</p>
-            
+                <h2>Indoors</h2>
+
+                <h3>Getting started</h3>
+                <p>Indoors time series visualisation is supported in wrld.time.js. To label data points as being indoors, please refer to the <a href="geojson.html">GeoJSON guide</a>.</p>
+                
+                <p>First, setup your Wrld map:</p>
+                
 <pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
 &lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
 &lt;script src="wrld.time.js"&gt;&lt;/script&gt;
@@ -86,13 +89,20 @@ body {font-family: "Lato", sans-serif}
         indoorsEnabled: true 
     });
 &lt;/script&gt;</code></pre>
-            
-            <p>Next, you can create a wrldTime object by passing in the Wrld map instance and your data:</p>
-            
-            <pre><code class="javascript">wrldTime(map, data);</code></pre>
-            
-            <p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
-            </div>
+                
+                <p>Next, you can create a wrldTime object by passing in the Wrld map instance and your data:</p>
+                
+                <pre><code class="javascript">wrldTime(map, data);</code></pre>
+                
+                <p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
+                
+                <h3>Options</h3>
+                <h4>showIndoorPointsExternally</h4>
+                You can set the "showIndoorPointsExternally" option to true if you want to display indoor data points on the global map:
+                
+<pre><code class="javascript">wrldTime(map, data, {
+    showIndoorPointsExternally: true
+});</code></pre>
     
   
 <!-- End Page Content -->
