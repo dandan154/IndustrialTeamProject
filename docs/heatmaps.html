@@ -87,9 +87,9 @@ body {font-family: "Lato", sans-serif}
             
             <p>Once the Wrld map has been created, initialise wrld.time.js with the heatmap option set to true:</p>
             
-            <pre><code class="javascript">wrldTime(map, data, {
-                heatmap: true
-            });</code></pre>
+<pre><code class="javascript">wrldTime(map, data, {
+    heatmap: true
+});</code></pre>
             
             
             <h3>Intensity</h3>
@@ -100,11 +100,11 @@ body {font-family: "Lato", sans-serif}
             
             <p>You can also set an indoor intensity factor which is applied to indoor data points. By default the global intensity is set to 50 and the indoor heatmap intensity is set to 1. This can be overriden when constructing the wrldTime object:</p>
             
-            <pre><code class="javascript">wrldTime(map, data, {
-                heatmap: true,
-                heatmapIntensity: 80,
-                indoorHeatmapIntensity: 0.6
-            });</code></pre>
+<pre><code class="javascript">wrldTime(map, data, {
+    heatmap: true,
+    heatmapIntensity: 80,
+    indoorHeatmapIntensity: 0.6
+});</code></pre>
             
             
             <h4 class="w3-center">Intensities on data points</h4>
@@ -113,18 +113,18 @@ body {font-family: "Lato", sans-serif}
             
             <p>This can be set in the GeoJSON feature, under the intensity property. In the below example, we set the intensity of this feature to 31:</p>
             
-            <pre><code class="json">{
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [ -2.988967373895398, 56.45511052483176 ]
-                },
-                "type": "Feature",
-                "id": 0,
-                "properties": {
-                    "date": "2018-07-06",
-                    "intensity": 31
-                }
-            }</code></pre>
+<pre><code class="json">{
+    "geometry": {
+        "type": "Point",
+        "coordinates": [ -2.988967373895398, 56.45511052483176 ]
+    },
+    "type": "Feature",
+    "id": 0,
+    "properties": {
+        "date": "2018-07-06",
+        "intensity": 31
+    }
+}</code></pre>
   
 <!-- End Page Content -->
 
