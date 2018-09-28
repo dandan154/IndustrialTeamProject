@@ -75,7 +75,7 @@ body {font-family: "Lato", sans-serif}
           
       <p>wrld.time.js is a plugin for <a href="https://wrld3d.com">Wrld3d</a> which allows for the visualisation of time series data.</p>  
       <p>To begin using the plugin, you will need to either have your data in a GeoJSON format, or convert it to one. Learn more about the GeoJSON format by <a href="geojson.html">visiting our GeoJSON guide</a>.</p>
-      <p>First, setup your Wrld map:</p>
+      <p>First, setup your Wrld map, you'll require a WRLD3D API key, follow this <a href="https://accounts.wrld3d.com/users/sign_up?plan=starter">link</a> and sign up with WRLD to get one:</p>
 
 <pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
 &lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
@@ -92,8 +92,20 @@ body {font-family: "Lato", sans-serif}
         <pre><code class="javascript">wrldTime(map, data);</code></pre>
         
         <p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
+        <p>We have provided some testing data to get you up and running: </p>
+        <pre><code class="javascript">wrldTime(map, 'https://danieljmc.github.io/IndustrialTeamProject/data/random.json');</code></pre>
 
+        <p>If you have implemented the script correctly it should look something like this: </p>
+        <pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
+&lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
+&lt;script src="wrld.time.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
+        center: [ 56.462, -2.9707 ], 
+        indoorsEnabled: true 
+    });
 
+wrldTime(map, 'https://danieljmc.github.io/IndustrialTeamProject/data/random.json');
 
         </div>
         </div>
