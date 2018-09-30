@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang = "en">
-  <title>wrld.time.js Demo</title>        
+  <title>wrld.time.js Demo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
   <link rel="stylesheet" href="css/wrld.time.css" />
   <link rel="stylesheet" href="css/atom-one-dark.css">
@@ -10,7 +10,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
   <script src="https://cdn-webgl.wrld3d.com/wrldjs/addons/indoor_control/latest/indoor_control.js"></script>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -29,14 +29,14 @@ body {font-family: "Lato", sans-serif}
     <a href="#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
     <a href="#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
    <div class="w3-dropdown-hover w3-hide-small">
-      <button class="w3-padding-large w3-button" title="More">Documentation<i class="fa fa-caret-down"></i></button>     
+      <button class="w3-padding-large w3-button" title="More">Documentation<i class="fa fa-caret-down"></i></button>
       <div class="w3-dropdown-content w3-bar-block w3-card-4">
         <a href="quickstart.html" class="w3-bar-item w3-button">Quickstart</a>
         <a href="geojson.html" class="w3-bar-item w3-button">Geojson</a>
         <a href="heatmaps.html" class="w3-bar-item w3-button">Heatmaps</a>
         <a href="indoors.html" class="w3-bar-item w3-button">Indoors</a>
         <a href="customising.html" class = "w3-bar-item w3-button">Customising</a>
-        
+
       </div>
     </div>
     <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
@@ -58,26 +58,26 @@ body {font-family: "Lato", sans-serif}
   <div id = "Home" class="mySlides w3-display-container w3-center">
     <img alt = "code image" src="images/heatmap5.png" style="width:20%; height:25%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-    
+
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
-    <img src="images/Heatmap2.png" style="width:20%; height:25%">
+    <img alt="rendered heatmap on WRLD map" src="images/Heatmap2.png" style="width:20%; height:25%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-     
+
     </div>
   </div>
   <div class="mySlides w3-display-container w3-center">
-    <img src="images/Heatmap3.png" style="width:20%; height:25%">
+    <img src="images/Heatmap3.png" alt="rendered heatmap with 100,000 points" style="width:20%; height:25%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-     
+
     </div>
   </div>
 
   <div class="mySlides w3-display-container w3-center">
-    <img src="images/heatmap4.png" style="width:20%; height:25%">
+    <img src="images/heatmap4.png" alt ="indoor heatmap rendering" style="width:20%; height:25%">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
-     
+
     </div>
   </div>
   <!--Section 2 -->
@@ -87,13 +87,13 @@ body {font-family: "Lato", sans-serif}
     <p class="w3-justify"></p>
     <div class="w3-row w3-padding-32">
       <div class="w3-third">
-       
+
       </div>
     </div>
   </div>
 
   <!-- What can you do Section -->
-  <div class="w3-black" id="How To">
+  <div class="w3-black" id="HowTo">
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
       <h2 class="w3-wide w3-center">What can you do?</h2>
       <p class="w3-opacity w3-center"><i>Time visualisation library</i></p>
@@ -102,45 +102,16 @@ body {font-family: "Lato", sans-serif}
       <br>Below you will find a live example of the software in action displaying a heatmap of generated data for the interior of the Westport building
 
       <br> <br> To check out the Github Repo click here: <a href = "https://github.com/danieljmc/IndustrialTeamProject">  https://github.com/danieljmc/IndustrialTeamProject</a>
-      
-      </ul>
+
     </div>
   </div>
-
-
-   <!-- Documentation 
-   <div class="w3-white" id="Documentation">
-    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-      <h2 class="w3-wide w3-center">Documentation</h2>
-      
-  </div>-->
-
-
-  <!-- Code Snippets Section
-  <div class="w3-black" id="How To">
-    <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-      <h2 class="w3-wide w3-center"><i class="fas fa-code"style="width:30px"></i> Code Snippets </h2>
-      <p class="w3-opacity w3-center"><i>No need to datamine</i></p>
-      <p class ="w3-opacity w3-left"><i>Loading your map</i></p><br><br>
-      You will first need an API key for WRLD which can be obtained from <a href="https://www.wrld3d.com">wrld3d.com</a>.<br>
-      Following this you will need to add the wrld package, this varies per SDK and can be seen on the WRLD website.
-      <img alt = "Code Snippet for Loading Map" src="images/CodeSnippet2.png" style = "width:100%" ><br>
-      <p></p>
-      <img alt = "Code Snippet for Loading Map" src="images/CodeSnippet1.png" style = "width:100%" >
-
-    </div>
-  </div>-->
-
-
-
-
 
   <!-- How To Section -->
   <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="Map">
     <h2 class="w3-wide w3-center">Live Example</h2>
     <p class="w3-opacity w3-center"><i>Below you will find a live example that you can try using.</i></p>
   </div>
-  
+
 <!-- End Page Content -->
 </div>
 
@@ -151,7 +122,7 @@ body {font-family: "Lato", sans-serif}
   <div id="widget-container" class="wrld-widget-container"></div>
   <div class="map" id="map" style = "height:680px"></div>
 </div>
-      
+
       <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
       <script src="js/heatmap.js"></script>
       <script src="js/highlight.pack.js"></script>
@@ -159,7 +130,7 @@ body {font-family: "Lato", sans-serif}
       <script src="js/wrld.time.js"></script>
       <script src="js/randomDataGenerator.js"></script>
       <script>
-          var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
+          var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", {
               center: [ 56.46, -2.978 ],
               indoorsEnabled: true
           });
@@ -188,13 +159,6 @@ body {font-family: "Lato", sans-serif}
           });
       </script>
 
-
-
-
-
-
-
-
 <!-- Footer -->
 <footer>
 <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
@@ -209,12 +173,12 @@ function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
+       x[i].style.display = "none";
     }
     myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 4000);    
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 4000);
 }
 
 // Used to toggle the menu on small screens when clicking on the menu button
@@ -222,7 +186,7 @@ function myFunction() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
-    } else { 
+    } else {
         x.className = x.className.replace(" w3-show", "");
     }
 }
