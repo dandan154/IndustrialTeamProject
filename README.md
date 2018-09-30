@@ -84,7 +84,4 @@ The above GeoJSON example generates a single coordinate on the map. It has a uni
  - WRLD3D - https://wrld3d.com/wrld.js/latest/docs/api/
  - Leaflet.heat - https://github.com/Leaflet/Leaflet.heat
  - simpleheat - https://github.com/mourner/simpleheat
- - Leaflet.easyButton - https://github.com/CliffCloud/Leaflet.EasyButton
-=======
-# IndustrialTeamProject
-Industrial Team Project for 4th Year
+
