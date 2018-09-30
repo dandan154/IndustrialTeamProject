@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 
 <meta charset="UTF-8">
 
-<title>wrld.time.js Demo</title>        
+<title>wrld.time.js Demo</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
 <link rel="stylesheet" href="css/wrld.time.css" />
 <link rel="stylesheet" href="css/atom-one-dark.css">
@@ -31,7 +31,7 @@ body {font-family: "Lato", sans-serif}
     <a href="index.html#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
     <a href="index.html#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
     <div class="w3-dropdown-hover w3-hide-small">
-        <button class="w3-padding-large w3-button" title="More">Documentation<i class="fa fa-caret-down"></i></button>     
+        <button class="w3-padding-large w3-button" title="More">Documentation<i class="fa fa-caret-down"></i></button>
         <div class="w3-dropdown-content w3-bar-block w3-card-4">
             <a href="quickstart.html" class="w3-bar-item w3-button">Quickstart</a>
             <a href="geojson.html" class="w3-bar-item w3-button">Geojson</a>
@@ -42,69 +42,57 @@ body {font-family: "Lato", sans-serif}
       </div>
       <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
     </div>
-  </div>
+  <div>
     <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
   </div>
 </div>
-
-<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) 
-<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
-  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
-  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
-  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
-</div>-->
-
 <!-- Page content -->
 <div class="w3-content" style="max-width:2000px;margin-top:46px">
 
-  
-
-
-
-
    <!--Initial Section-->
-   <div class="w3-white" id="sec1">
+   <div class="w3-white" id="sec1heading">
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
       <h2 class="w3-wide w3-center">Indoors</h2>
       <p class="w3-opacity w3-center"><i>How to create with the software</i></p>
       </div>
       </div>
-      <div class="w3-white" id="sec1">
+      <div class="w3-white" id="sec1body">
         <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-          
+
                 <h2>Indoors</h2>
 
                 <h3>Getting started</h3>
                 <p>Indoors time series visualisation is supported in wrld.time.js. To label data points as being indoors, please refer to the <a href="geojson.html">GeoJSON guide</a>.</p>
-                
+
                 <p>First, setup your Wrld map:</p>
-                
+
 <pre><code class="html">&lt;div id="map"&gt;&lt;/div&gt;
 &lt;script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"&gt;&lt;/script&gt;
 &lt;script src="wrld.time.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-    var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", { 
-        center: [ 56.462, -2.9707 ], 
-        indoorsEnabled: true 
+    var map = L.Wrld.map("map", "[YOUR WRLD API KEY]", {
+        center: [ 56.462, -2.9707 ],
+        indoorsEnabled: true
     });
 &lt;/script&gt;</code></pre>
-                
+
                 <p>Next, you can create a wrldTime object by passing in the Wrld map instance and your data:</p>
-                
+
                 <pre><code class="javascript">wrldTime(map, data);</code></pre>
-                
+
                 <p>Data can either be the GeoJSON object, or a URL pointing to the GeoJSON file.</p>
-                
+
                 <h3>Options</h3>
                 <h4>showIndoorPointsExternally</h4>
                 You can set the "showIndoorPointsExternally" option to true if you want to display indoor data points on the global map:
-                
+
 <pre><code class="javascript">wrldTime(map, data, {
     showIndoorPointsExternally: true
 });</code></pre>
-    
-  
+
+    </div>
+  </div>
+</div>
 <!-- End Page Content -->
 
 
@@ -115,7 +103,7 @@ body {font-family: "Lato", sans-serif}
     <div id="widget-container" class="wrld-widget-container"></div>
     <div class="map" id="map" style = "height:680px"></div>
 </div>
-        
+
         <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
         <script src="js/heatmap.js"></script>
         <script src="js/highlight.pack.js"></script>
@@ -123,7 +111,7 @@ body {font-family: "Lato", sans-serif}
         <script src="js/wrld.time.js"></script>
         <script src="js/randomDataGenerator.js"></script>
         <script>
-            var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
+            var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", {
                 center: [ 56.46, -2.978 ],
                 indoorsEnabled: true
             });
@@ -173,7 +161,7 @@ function myFunction() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
-    } else { 
+    } else {
         x.className = x.className.replace(" w3-show", "");
     }
 }
