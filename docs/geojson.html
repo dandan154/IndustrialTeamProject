@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang = "en">
-  <title>wrld.time.js Demo</title>        
+  <title>wrld.time.js Demo</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
   <link rel="stylesheet" href="css/wrld.time.css" />
   <link rel="stylesheet" href="css/atom-one-dark.css">
@@ -11,7 +11,7 @@
   <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
   <script src="https://cdn-webgl.wrld3d.com/wrldjs/addons/indoor_control/latest/indoor_control.js"></script>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,31 +23,31 @@ body {font-family: "Lato", sans-serif}
 </style>
 <body>
 
-<!-- Navbar -->
-<div class="w3-top">
-  <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-    <a href="index.html#Home" class="w3-bar-item w3-button w3-padding-large">Home</a>
-    <a href="index.html#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
-    <a href="index.html#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
-    <div class="w3-dropdown-hover w3-hide-small">
-        <button class="w3-padding-large w3-button" title="More">Documentation<i class="fa fa-caret-down"></i></button>     
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a href="quickstart.html" class="w3-bar-item w3-button">Quickstart</a>
-            <a href="geojson.html" class="w3-bar-item w3-button">Geojson</a>
-            <a href="heatmaps.html" class="w3-bar-item w3-button">Heatmaps</a>
-            <a href="indoors.html" class="w3-bar-item w3-button">Indoors</a>
-            <a href="customising.html" class = "w3-bar-item w3-button">Customising</a>
+  <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-black w3-card">
+      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="index.html#Home" class="w3-bar-item w3-button w3-padding-large">Home</a>
+      <a href="index.html#About" class="w3-bar-item w3-button w3-padding-large w3-hide-small">About</a>
+      <a href="index.html#Map" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Map</a>
+      <div class="w3-dropdown-hover w3-hide-small">
+          <button class="w3-padding-large w3-button" title="More">Documentation<i class="fa fa-caret-down"></i></button>
+          <div class="w3-dropdown-content w3-bar-block w3-card-4">
+              <a href="quickstart.html" class="w3-bar-item w3-button">Quickstart</a>
+              <a href="geojson.html" class="w3-bar-item w3-button">Geojson</a>
+              <a href="heatmaps.html" class="w3-bar-item w3-button">Heatmaps</a>
+              <a href="indoors.html" class="w3-bar-item w3-button">Indoors</a>
+              <a href="customising.html" class = "w3-bar-item w3-button">Customising</a>
+          </div>
         </div>
+        <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
       </div>
+    <div>
       <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
     </div>
   </div>
-    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"></a>
-  </div>
-</div>
 
-<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) 
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links)
 <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
   <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
   <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">Filler</a>
@@ -58,30 +58,29 @@ body {font-family: "Lato", sans-serif}
 <!-- Page content -->
 <div class="w3-content" style="max-width:2000px;margin-top:46px">
 
-  
+
 
 
 
 
    <!--Initial Section-->
-   <div class="w3-white" id="sec1">
+   <div class="w3-white" id="sec1heading">
     <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
       <h2 class="w3-wide w3-center">Geojson</h2>
       <p class="w3-opacity w3-center"><i>How to create with the software</i></p>
       </div>
       </div>
-      <div class="w3-white" id="sec1">
+      <div class="w3-white" id="sec1body">
         <div class="w3-container w3-content w3-padding-64" style="max-width:800px">
             <h2>GeoJSON</h2>
 
             <h3>Introduction</h3>
             <p>GeoJSON is a format for encoding a variety of geographic data structures. See <a href="http://geojson.org/">geojson.org</a> for more information.</p>
-            
+
             <p>GeoJSON supports the following geometry types: Point, LineString, Polygon, MultiPoint, MultiLineString, and MultiPolygon. Geometric objects with additional properties are Feature objects. Sets of features are contained by FeatureCollection objects.</p>
-            
+
             <p>For further information on adding different types, refer to the <a href="https://leafletjs.com/examples/geojson/">Leaflet GeoJSON examples.</a>
-            
-            <a name="indoors"></a>
+
             <h3>Indoor support</h3>
             <p>Features can be set to indoors by specifying the 'indoorMapId' and 'indoorMapFloorId' properties:</p>
 <pre><code class="json">{
@@ -97,15 +96,14 @@ body {font-family: "Lato", sans-serif}
         "indoorMapFloorId": 2
     }
 }</code></pre>
-            
-            <p>Refer to the <a href="indoors.html">indoor examples</a> for more information on displaying time-series data indoors.</p> 
-            
-            <a name="heatmap">
+
+            <p>Refer to the <a href="indoors.html">indoor examples</a> for more information on displaying time-series data indoors.</p>
+
             <h3>Heatmap intensity</h3>
             <p>You may wish to apply intensities to specific data points, for example if you are visualising the population of cities, each city would have an associated intensity (in this case the number of inhabitants).</p>
-            
+
             <p>This can be set in the GeoJSON feature, under the intensity property. In the below example, we set the intensity of this feature to 31:</p>
-            
+
 <pre><code class="json">{
     "geometry": {
         "type": "Point",
@@ -118,16 +116,14 @@ body {font-family: "Lato", sans-serif}
         "intensity": 31
     }
 }</code></pre>
-    
+
         </div>
-  
-<!-- End Page Content -->
 
-
-
-
-<!-- WRLD MAP-->
     </div>
+  </div>
+  
+<!-- WRLD MAP-->
+
 <div style="position: relative; flex-grow: 1; width: 100%; ">
     <div id="widget-container" class="wrld-widget-container"></div>
     <div class="map" id="map" style = "height:680px"></div>
@@ -139,7 +135,7 @@ body {font-family: "Lato", sans-serif}
 <script src="js/wrld.time.js"></script>
 <script src="js/randomDataGenerator.js"></script>
 <script>
-    var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", { 
+    var map = L.Wrld.map("map", "21343d1ce0a398a7244c29e3c619ea37", {
         center: [ 56.462, -2.9707 ],
         indoorsEnabled: true
     });
@@ -191,12 +187,12 @@ function carousel() {
     var i;
     var x = document.getElementsByClassName("mySlides");
     for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
+       x[i].style.display = "none";
     }
     myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 4000);    
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 4000);
 }
 
 // Used to toggle the menu on small screens when clicking on the menu button
@@ -204,7 +200,7 @@ function myFunction() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
-    } else { 
+    } else {
         x.className = x.className.replace(" w3-show", "");
     }
 }
