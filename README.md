@@ -22,12 +22,17 @@ wrld.time.js includes several additional dependencies. These are included to hel
 
 ##### Standard leaflet CSS
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />
+```
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" />    
+```
+
     
 ##### Wrld.js
 This is the main dependency. To make use of the dev kit and its features go to https://wrld3d.com/wrld.js/latest/docs/examples/
 
+```
     <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+```
     
 ##### Leaflet.heat and simpleheat
 Both dependencies are included in the main wrld.time.js file
@@ -41,9 +46,10 @@ Both dependencies are included in the main wrld.time.js file
 ##### easyButton and Font Awesome
 These stylesheets are used purely for our examples, buttons are in fact not even required! The associated javascript is already included.
 
+```
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.EasyButton/2.3.0/easy-button.css" rel="stylesheet"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+```
 
 #### Including Your Dataset
 The library makes use of the standardised GeoJSON format. The simplest way to include your dataset is to do so locally, assigning the data to a javascript array in a separate file and adding it the main root repository: 
@@ -51,10 +57,13 @@ The library makes use of the standardised GeoJSON format. The simplest way to in
 ##### your-page.html
 Include this on your page:
 
+```
      <script src="dataset.json"></script>
+```
 
 ##### dataset.json
 
+```
         var dataset = {
       "type": "FeatureCollection",
       "features": [
@@ -75,7 +84,8 @@ Include this on your page:
         }
       ]
     }
-    
+```
+
 The above GeoJSON example generates a single coordinate on the map. It has a unique date property within it. This is important as it allows the wrld.time library to effectively time sequence the data. Further properties may be included where required.   
 
 #### Included Tools
