@@ -1,8 +1,8 @@
 # wrld.time.js
-wrld.time.js allows for the use of heatmaps on a WRLD3D map.
+wrld.time.js allows for the representation of time-series data on a WRLD3D map. Also includes heatmap functionality
 ## Setup/Installation
 ### Easy
-This Guide will get anyone up and running. Our repository includes a website to show you how our plugin works and some of its features.
+This Guide will get anyone up and running. Our repository includes a website to show you how our plugin works and some of its features. For the full documentation and tutorials see https://danieljmc.github.io/IndustrialTeamProject/index.html
 #### Setup
 Clone this repository and make this the root of your project.
 navigate to the following in your web browser:
@@ -52,7 +52,7 @@ These stylesheets are used purely for our examples, buttons are in fact not even
 ```
 
 #### Including Your Dataset
-The library makes use of the standardised GeoJSON format. The simplest way to include your dataset is to do so locally, assigning the data to a javascript array in a separate file and adding it the main root repository: 
+The library makes use of the standardised GeoJSON format (RFC 7946). The simplest way to include your dataset is to do so locally, assigning the data to a javascript array in a separate file and adding it the main root repository: 
 
 ##### your-page.html
 Include this on your page:
@@ -86,11 +86,9 @@ Include this on your page:
     }
 ```
 
-The above GeoJSON example generates a single coordinate on the map. It has a unique date property within it. This is important as it allows the wrld.time library to effectively time sequence the data. Further properties may be included where required.   
+The above GeoJSON example generates a single coordinate on the map. It has a unique date property within it. This is important as it allows the wrld.time library to effectively time sequence the data. Further properties may be included where required. Alternatively the library accepts the use of a url link to the data.   
 
-#### Included Tools
-
-# Credits
+# Dependencies 
  - WRLD3D - https://wrld3d.com/wrld.js/latest/docs/api/
  - Leaflet.heat - https://github.com/Leaflet/Leaflet.heat
  - simpleheat - https://github.com/mourner/simpleheat
